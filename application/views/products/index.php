@@ -14,9 +14,11 @@
 <ul>
 <?php foreach($products as $product): ?>
     <li>
+        <div><? echo img($product['thumb_url']); ?></div>
         <div><? echo $product['make'] . " " . $product['model_no'] ?></div>
         <div><? echo "Price: " . $product['price'] . "$" ?></div>
         <div><? echo "Seller: " . $product['seller_id'] ?></div>
+        <div><? echo anchor('/products/show/' . $product['id'], "See More")?></div>
     </li>
 <? endforeach; ?>
 </ul>

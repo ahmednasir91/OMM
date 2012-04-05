@@ -17,13 +17,16 @@ class Products_model extends CI_Model
     {
         if(!$full)
         {
-            $this->db->select('make, model_no, price, seller_id');
+            $this->db->select('id, make, model_no, price, seller_id, thumb_url');
         }
         $query = $this->db->get('products', $limit);
         return $query->result_array();
+    }
 
-
-
+    public function getproduct_by_id($id)
+    {
+        $query = $this->db->get_where('products', array('id' => $id));
+        return $query->result();
     }
 
     public function save($data)

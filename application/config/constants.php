@@ -1,4 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+//Defined by ME :-D
+define('UPLOAD_PATH', './uploads/images/');
+define('THUMB_HEIGHT', 100);
+define('THUMB_WIDTH', 100);
+define('PRODUCT_HOMEPAGE', 10);
+define('IMAGE_HEIGHT', 200);
+define('IMAGE_WIDTH', 200);
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +24,6 @@ define('FILE_READ_MODE', 0644);
 define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
-
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes

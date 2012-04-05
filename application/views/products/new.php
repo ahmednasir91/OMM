@@ -9,7 +9,7 @@
 ?>
 <h2>List New Product</h2>
 <?= validation_errors(); ?>
-<?= form_open('products/create') ?>
+<?= form_open_multipart('products/create') ?>
 <?= form_hidden('seller_id', 1)?>
 <table>
     <tr>
@@ -19,6 +19,10 @@
     <tr>
         <td><label for = "model_no">Model Number</label></td>
         <td><input type = "input" name = "model_no" value = "<?= set_value('model_no'); ?>"/><br /></td>
+    </tr>
+    <tr>
+        <td><label for = 'image_url'>Image</label></td>
+        <td><? echo form_upload('image_url', set_value('image_url')); ?></td>
     </tr>
     <tr>
         <td><label for = "description">Description</label></td>
