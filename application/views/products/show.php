@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 ?>
-<h1><? echo $make . $model_no ?></h1>
+<h1><? echo $make . " " . $model_no ?></h1>
 <div>
     <? echo img($image_url); ?>
 </div>
@@ -19,6 +19,6 @@
     Price: <? echo $price . "$" ?>
 </div>
 <div>
-    Seller: <? echo $seller_id ?>
+    Seller: <? echo $seller ?>
 </div>
 

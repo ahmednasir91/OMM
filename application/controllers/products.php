@@ -13,22 +13,27 @@ class Products extends CI_Controller
         parent::__construct();
         $this->load->model('products_model');
         $this->load->helper(array('form', 'url', 'html'));
-        $this->load->library(array('session', 'upload'));
+        $this->load->library(array('session', 'upload', 'parser', 'ion_auth'));
+
     }
 
     public function index()
     {
+
         $products = $this->products_model->getlist(PRODUCT_HOMEPAGE, FALSE);
         $data['zerorows'] = empty($products);
         $data['products'] = $products;
         $this->load->view('products/index', $data);
+
     }
 
     public function show($id)
     {
         $product = $this->products_model->getproduct_by_id($id);
         if(!empty($product))
+        {
             $this->load->view('products/show', $product[0]);
+        }
         else
             show_error("Product with ID: " . $id . " not found in database.");
     }

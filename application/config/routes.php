@@ -41,7 +41,7 @@ $route['products/new'] = 'products/addnew';
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
-$route['default_controller'] = 'products';
+$route['default_controller'] = 'main';
 //$route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 

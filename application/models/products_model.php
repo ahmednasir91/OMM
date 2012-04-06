@@ -15,17 +15,14 @@ class Products_model extends CI_Model
 
     public function getlist($limit, $full)
     {
-        if(!$full)
-        {
-            $this->db->select('id, make, model_no, price, seller_id, thumb_url');
-        }
-        $query = $this->db->get('products', $limit);
+
+        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id");
         return $query->result_array();
     }
 
     public function getproduct_by_id($id)
     {
-        $query = $this->db->get_where('products', array('id' => $id));
+        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, image_url, description from users, products where products.seller_id = users.id and products.id = " . $id);
         return $query->result();
     }
 
@@ -33,4 +30,6 @@ class Products_model extends CI_Model
     {
         return $this->db->insert('products', $data);
     }
+
+
 }
