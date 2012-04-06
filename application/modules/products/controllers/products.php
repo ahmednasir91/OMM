@@ -6,14 +6,14 @@
  * Time: 9:55 PM
  * To change this template use File | Settings | File Templates.
  */
-class Products extends CI_Controller
+class Products extends MX_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('products_model');
         $this->load->helper(array('form', 'url', 'html'));
-        $this->load->library(array('session', 'upload', 'parser', 'ion_auth'));
+        $this->load->library(array('session', 'upload', 'parser'));
 
     }
 
@@ -47,7 +47,7 @@ class Products extends CI_Controller
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('price', 'Price', 'required');
         $this->form_validation->set_rules('image_url', 'Image', 'callback__do_upload');
-        if($this->form_validation->run() === FALSE)
+        if($this->form_validation->run($this) === FALSE)
         {
             $this->load->view('products/new');
         }
@@ -86,7 +86,7 @@ class Products extends CI_Controller
                 $this->image_moo->save($filedata['full_path']);
             }
             $this->image_moo->load($filedata['full_path']);
-            $this->image_moo->resize(THUMB_WIDTH, THUMB_HEIGHT);
+            $this->image_moo->resize(THUMB_WIDTH, THUMB_HEIGHT, FALSE);
             $this->image_moo->save_pa("", "_thumb", TRUE);
             $_POST['image_url'] =  UPLOAD_PATH . $filedata['file_name'];
             $_POST['thumb_url'] =  UPLOAD_PATH . $filedata['raw_name'] . "_thumb" . $filedata['file_ext'];

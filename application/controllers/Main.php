@@ -28,6 +28,7 @@ class Main extends MX_Controller
 
         $data['title'] = "Online Mobile Marketplace";
         $data['login'] = modules::run('auth/auth/index');
+        $data['products'] = modules::run('products/products/index');
         $data['message'] = $this->session->flashdata('message');
         $this->parser->parse('main', $data);
     }

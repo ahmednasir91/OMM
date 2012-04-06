@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Data Source" product="" version="" jdbc-version="" driver-version="" uuid="f61de4bc-9118-4156-b2a1-2ff0930536af">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://localhost:3306/omm</jdbc-url>
+    <user-name>root</user-name>
+    <schema-pattern>omm.*</schema-pattern>
+    <default-schemas>omm.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>jar://$PROJECT_DIR$/mysql-connector-java-5.1.18-bin.jar!/</url>
+      </library>
+      <library>
+        <url>file://$PROJECT_DIR$/mysql-connector-license.txt</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>

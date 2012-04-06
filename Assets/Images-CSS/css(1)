@@ -1,0 +1,8 @@
+@media screen {
+@font-face {
+  font-family: 'Goudy Bookletter 1911';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Goudy Bookletter 1911'), local('GoudyBookletter1911'), url('http://themes.googleusercontent.com/static/fonts/goudybookletter1911/v3/l5lwlGTN3pEY5Bf-rQEuIMvsW7MYFVYsuLRj6jSUyb0.woff') format('woff');
+}
+}
