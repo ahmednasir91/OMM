@@ -27,7 +27,9 @@ $config['base_url']	= '';
 |
 */
 $config['index_page'] = '';
-
+$config['modules_locations'] = array(
+    APPPATH.'modules/' => '../modules/',
+);
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL

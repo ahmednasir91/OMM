@@ -6,13 +6,13 @@
  * Time: 11:41 PM
  * To change this template use File | Settings | File Templates.
  */
-class Main extends CI_Controller
+class Main extends MX_Controller
 {
     function __construct()
     {
         parent::__construct();
 
-        $this->load->library(array('curl', 'session', 'parser', 'ion_auth'));
+        $this->load->library(array('session', 'parser'));
         $this->load->helper(array('url'));
         if (isset($_SERVER['HTTP_REFERER']))
         {
@@ -27,7 +27,7 @@ class Main extends CI_Controller
     {
 
         $data['title'] = "Online Mobile Marketplace";
-        $data['login'] = $this->curl->simple_get('auth/index');
+        $data['login'] = modules::run('auth/auth/index');
         $data['message'] = $this->session->flashdata('message');
         $this->parser->parse('main', $data);
     }
