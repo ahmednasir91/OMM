@@ -23,12 +23,22 @@ class Main extends MX_Controller
             $this->session->set_userdata('previous_page', base_url());
         }
     }
-    function index()
+    function index($page)
     {
 
         $data['title'] = "Online Mobile Marketplace";
         $data['login'] = modules::run('auth/auth/index');
-        $data['products'] = modules::run('products/products/index');
+        switch($page)
+        {
+            case 'home':
+                $data['content'] = modules::run('products/products/index');
+                break;
+            case 'register':
+            case 'forgot_password':
+                $data['content'] = modules::run('auth/' . $page);
+                $data['login'] = "";
+                break;
+        }
         $data['message'] = $this->session->flashdata('message');
         $this->parser->parse('main', $data);
     }

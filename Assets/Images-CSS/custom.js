@@ -57,7 +57,7 @@
 		
 		et_search_bar();
 		
-		var $comment_form = jQuery('form#commentform');
+		var $comment_form = jQuery('form');
 		$comment_form.find('input, textarea').each(function(index,domEle){
 			var $et_current_input = jQuery(domEle),
 				$et_comment_label = $et_current_input.siblings('label'),
@@ -83,39 +83,7 @@
 		$comment_form.find('input#submit').click(function(){
 			if (jQuery("input#url").val() === jQuery("input#url").siblings('label').text()) jQuery("input#url").val("");
 		});
-		
-		
-		var $login_form = jQuery('form#loginform');
-		$login_form.find('input, textarea').each(function(index,domEle){
-			var $et_current_input = jQuery(domEle),
-			$et_login_label = $et_current_input.siblings('label'),
-			et_login_label_value = $et_current_input.siblings('label').text();
-			if ( $et_login_label.length ) {
-				$et_login_label.hide();
-				if ( $et_current_input.siblings('span.required') ) { 
-					et_login_label_value += $et_current_input.siblings('span.required').text();
-					$et_current_input.siblings('span.required').hide();
-				}
-				$et_current_input.val(et_login_label_value);
-			}
-			}).live('focus',function(){
-			var et_label_text = jQuery(this).siblings('label').text();
-			if ( jQuery(this).siblings('span.required').length ) et_label_text += jQuery(this).siblings('span.required').text();
-			if (jQuery(this).val() === et_label_text) jQuery(this).val("");
-			}).live('blur',function(){
-			var et_label_text = jQuery(this).siblings('label').text();
-			if ( jQuery(this).siblings('span.required').length ) et_label_text += jQuery(this).siblings('span.required').text();
-			if (jQuery(this).val() === "") jQuery(this).val( et_label_text );
-		});
-		
-		$login_form.find('input#submit').click(function(){
-			if (jQuery("input#url").val() === jQuery("input#url").siblings('label').text()) jQuery("input#url").val("");
-		});
-		
-		
-		
-		
-		
+
 		
 		if ( $('ul.et_disable_top_tier').length ) $("ul.et_disable_top_tier > li > ul").prev('a').attr('href','#');
 		

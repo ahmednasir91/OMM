@@ -167,9 +167,7 @@ class Auth extends MX_Controller {
 			$data['email'] = array('name' => 'email',
 				'id' => 'email',
 			);
-			//set any errors and display the form
-			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->load->view('auth/forgot_password', $data);
+			$this->load->view('forgot_password', $data);
 		}
 		else
 		{
@@ -179,12 +177,12 @@ class Auth extends MX_Controller {
 			if ($forgotten)
 			{ //if there were no errors
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+				redirect("/", 'refresh'); //we should display a confirmation page here instead of the login page
 			}
 			else
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("auth/forgot_password", 'refresh');
+				redirect("forgot_password", 'refresh');
 			}
 		}
 	}
@@ -197,12 +195,12 @@ class Auth extends MX_Controller {
 		if ($reset)
 		{  //if the reset worked then send them to the login page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth/login", 'refresh');
+			redirect("/", 'refresh');
 		}
 		else
 		{ //if the reset didnt work then send them back to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
+			redirect("forgot_password", 'refresh');
 		}
 	}
 
@@ -269,44 +267,44 @@ class Auth extends MX_Controller {
 		}
 	}
 
+
 	//create a new user
-	function create_user()
+	function register()
 	{
 		$data['title'] = "Create User";
 
-		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+		if ($this->ion_auth->logged_in() || $this->ion_auth->is_admin())
 		{
 			redirect('auth', 'refresh');
 		}
 
 		//validate form input
 		$this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+        $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
 		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
-		$this->form_validation->set_rules('phone1', 'First Part of Phone', 'required|xss_clean|min_length[3]|max_length[3]');
-		$this->form_validation->set_rules('phone2', 'Second Part of Phone', 'required|xss_clean|min_length[3]|max_length[3]');
-		$this->form_validation->set_rules('phone3', 'Third Part of Phone', 'required|xss_clean|min_length[4]|max_length[4]');
-		$this->form_validation->set_rules('company', 'Company Name', 'required|xss_clean');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required|xss_clean');
+		$this->form_validation->set_rules('address', 'Address', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
 		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
 
 		if ($this->form_validation->run() == true)
 		{
-			$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
+			$username =$this->input->post('user_name');
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$additional_data = array('first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
-				'company' => $this->input->post('company'),
-				'phone' => $this->input->post('phone1') . '-' . $this->input->post('phone2') . '-' . $this->input->post('phone3'),
+				'address' => $this->input->post('address'),
+				'phone_number' => $this->input->post('phone_number')
 			);
 		}
 		if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data))
 		{ //check to see if we are creating the user
 			//redirect them back to the admin page
-			$this->session->set_flashdata('message', "User Created");
-			redirect("auth", 'refresh');
+			$this->session->set_flashdata('message', "You have successfully registered, you can now login.");
+			redirect("/", 'refresh');
 		}
 		else
 		{ //display the create user form
@@ -328,25 +326,20 @@ class Auth extends MX_Controller {
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('email'),
 			);
-			$data['company'] = array('name' => 'company',
+			$data['address'] = array('name' => 'address',
 				'id' => 'company',
 				'type' => 'text',
-				'value' => $this->form_validation->set_value('company'),
+				'value' => $this->form_validation->set_value('address'),
 			);
-			$data['phone1'] = array('name' => 'phone1',
-				'id' => 'phone1',
+			$data['phone_number'] = array('name' => 'phone_number',
+				'id' => 'phone_number',
 				'type' => 'text',
-				'value' => $this->form_validation->set_value('phone1'),
+				'value' => $this->form_validation->set_value('phone_number'),
 			);
-			$data['phone2'] = array('name' => 'phone2',
-				'id' => 'phone2',
+			$data['user_name'] = array('name' => 'user_name',
+				'id' => 'user_name',
 				'type' => 'text',
-				'value' => $this->form_validation->set_value('phone2'),
-			);
-			$data['phone3'] = array('name' => 'phone3',
-				'id' => 'phone3',
-				'type' => 'text',
-				'value' => $this->form_validation->set_value('phone3'),
+				'value' => $this->form_validation->set_value('user_name'),
 			);
 			$data['password'] = array('name' => 'password',
 				'id' => 'password',
@@ -358,7 +351,7 @@ class Auth extends MX_Controller {
 				'type' => 'password',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
-			$this->load->view('auth/create_user', $data);
+			$this->load->view('register', $data);
 		}
 	}
 
