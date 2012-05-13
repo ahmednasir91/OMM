@@ -14,6 +14,7 @@ class Main extends MX_Controller
 
         $this->load->library(array('session', 'parser'));
         $this->load->helper(array('url'));
+
         if (isset($_SERVER['HTTP_REFERER']))
         {
             $this->session->set_userdata('previous_page', $_SERVER['HTTP_REFERER']);
@@ -23,20 +24,35 @@ class Main extends MX_Controller
             $this->session->set_userdata('previous_page', base_url());
         }
     }
-    function index($page)
+    function index($page, $action = 0, $arg1 = 0, $arg2 = 0)
     {
-
         $data['title'] = "Online Mobile Marketplace";
         $data['login'] = modules::run('auth/auth/index');
+        $data['makeslist'] = modules::run('products/products/makeslist');
+        $data['nothome'] = true;
         switch($page)
         {
             case 'home':
-                $data['content'] = modules::run('products/products/index');
+                $data['content'] = modules::run('products/products/home');
+                $data['nothome'] = false;
                 break;
             case 'register':
             case 'forgot_password':
                 $data['content'] = modules::run('auth/' . $page);
                 $data['login'] = "";
+                break;
+            case 'products':
+                if($action === 0)
+                    $data['content'] = modules::run("products/index");
+                elseif($action === "show")
+                    $data['content'] = modules::run("products/products/show", $arg1);
+                elseif($action === "price")
+                    $data['content'] = modules::run("products/products/price", $arg1, $arg2);
+                else
+                    if($arg1 === 0)
+                        $data['content'] = modules::run("products/products/".$action);
+                    else
+                        $data['content'] = modules::run("products/products/".$action, $arg1);
                 break;
         }
         $data['message'] = $this->session->flashdata('message');

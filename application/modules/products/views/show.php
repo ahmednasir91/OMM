@@ -12,13 +12,13 @@
     <? echo img($image_url); ?>
 </div>
 <div>
-    Description:
-    <p><? echo $description ?></p>
-</div>
-<div>
     Price: <? echo $price . "$" ?>
 </div>
 <div>
     Seller: <? echo $seller ?>
+</div>
+<div>
+    Description:
+    <p><? echo $description ?></p>
 </div>
 

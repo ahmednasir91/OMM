@@ -10,7 +10,7 @@
 <h2>List New Product</h2>
 <?= validation_errors(); ?>
 <?= form_open_multipart('products/create') ?>
-<?= form_hidden('seller_id', 1)?>
+<?= form_hidden('seller_id', $seller_id)?>
 <table>
     <tr>
         <td><label for = "make">Make</label></td>

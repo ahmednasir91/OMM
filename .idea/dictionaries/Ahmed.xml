@@ -1,7 +1,17 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Ahmed">
     <words>
+      <w>addnew</w>
+      <w>basepath</w>
       <w>forgotpassword</w>
+      <w>getlist</w>
+      <w>getlistby</w>
+      <w>getmakes</w>
+      <w>isloggedin</w>
+      <w>makeslist</w>
+      <w>sellerid</w>
+      <w>widgettitle</w>
+      <w>zerorows</w>
     </words>
   </dictionary>
 </component>

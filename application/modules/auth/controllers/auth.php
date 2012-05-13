@@ -19,7 +19,8 @@ class Auth extends MX_Controller {
 		if (!$this->ion_auth->logged_in())
 		{
 			//redirect them to the login page
-			$this->load->view('auth/login');
+            $this->session->set_userdata(array('isloggedin' => false));
+            $this->load->view('auth/login');
 		}
 	/*  elseif (!$this->ion_auth->is_admin())
 		{
@@ -33,6 +34,11 @@ class Auth extends MX_Controller {
 			//list the users
 			$user = $this->ion_auth->user()->row();
 			$this->load->view('auth/index', array('username' => $user->username));
+            $this->session->set_userdata(array(
+                'isloggedin' => true,
+                'username' => $user->username,
+                'userid' => $user->id
+            ));
 		}
 	}
 
@@ -89,7 +95,7 @@ class Auth extends MX_Controller {
 
 		//log the user out
 		$logout = $this->ion_auth->logout();
-
+        $this->session->set_userdata(array('isloggedin' => false));
 		//redirect them back to the page they came from
         redirect($this->config->item('base_url'), 'refresh');
 	}

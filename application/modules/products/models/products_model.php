@@ -13,10 +13,30 @@ class Products_model extends CI_Model
         $this->load->database();
     }
 
+    public function getmakes()
+    {
+        $query = $this->db->query("SELECT distinct make from products");
+        return $query->result();
+    }
+
+    public function getlistby_price($lower, $upper)
+    {
+        if($upper !== 0)
+            $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price <= " . $upper ." and products.price >= " . $lower ." order by products.id DESC");
+        else
+            $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price >= " . $lower ." order by products.id DESC");
+        return $query->result_array();
+    }
+    public function getlistby_make($make)
+    {
+        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.make = \"" . $make ."\" order by products.id DESC");
+        return $query->result_array();
+    }
+
     public function getlist($limit, $full)
     {
 
-        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id");
+        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id order by products.id DESC");
         return $query->result_array();
     }
 

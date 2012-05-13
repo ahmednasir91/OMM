@@ -17,6 +17,35 @@ class Products extends MX_Controller
 
     }
 
+    public function home()
+    {
+        $this->load->view('products/home');
+    }
+
+    public function makeslist()
+    {
+        $makes = $this->products_model->getmakes();
+        $data['makes'] = $makes;
+        $this->load->view('products/makes', $data);
+    }
+
+    public function make($make)
+    {
+        $products = $this->products_model->getlistby_make($make);
+        $data['zerorows'] = empty($products);
+        $data['products'] = $products;
+        $this->load->view('products/index', $data);
+    }
+
+    public function price($lower, $upper)
+    {
+        $products = $this->products_model->getlistby_price($lower, $upper);
+        $data['zerorows'] = empty($products);
+        $data['products'] = $products;
+        $this->load->view('products/index', $data);
+    }
+
+
     public function index()
     {
 
@@ -49,6 +78,7 @@ class Products extends MX_Controller
         $this->form_validation->set_rules('image_url', 'Image', 'callback__do_upload');
         if($this->form_validation->run($this) === FALSE)
         {
+            $this->session->set_flashdata("message", validation_errors());
             $this->load->view('products/new');
         }
         else
@@ -71,7 +101,6 @@ class Products extends MX_Controller
         $field_name = 'image_url';
         if ( ! $this->upload->do_upload($field_name))
         {
-            $message = $this->upload->display_errors();
             $this->form_validation->set_message('_do_upload', $this->upload->display_errors());
             return FALSE;
         }
@@ -96,6 +125,16 @@ class Products extends MX_Controller
 
     public function addnew()
     {
-        $this->load->view('products/new');
+        $isloggedin = $this->session->userdata('isloggedin');
+        if($isloggedin)
+        {
+            $data['seller_id'] = $this->session->userdata('userid');
+            $this->load->view('products/new', $data);
+        }
+        else
+        {
+            $this->session->set_flashdata("message", "You must be logged in, to list a product for selling.");
+            redirect("/");
+        }
     }
 }

@@ -16,7 +16,7 @@
     </p>
 
     <?php echo form_close();?>
-    <p><a href = "./register" >Register New Account</a></p>
-    <p><a href = "./forgot_password" >Forgot Your Password ?</a></p>
+    <p><a href = "/register" >Register New Account</a></p>
+    <p><a href = "/forgot_password" >Forgot Your Password ?</a></p>
 </div>
 

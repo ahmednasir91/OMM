@@ -39,9 +39,9 @@
 */
 $route['forgot_password'] = 'main/index/forgot_password';
 $route['register'] = 'main/index/register';
-$route['news/create'] = 'news/create';
-$route['news/(:any)'] = 'news/view/$1';
-$route['news'] = 'news';
+$route['products/show/(:any)'] = 'main/index/products/show/$1';
+$route['products'] = 'main/index/products';
+$route['products/(:any)'] = 'main/index/products/$1';
 $route['default_controller'] = 'main/index/home';
 //$route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';

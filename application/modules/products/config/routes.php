@@ -7,4 +7,5 @@
  * To change this template use File | Settings | File Templates.
  */
 $route['products/new'] = 'products/addnew';
+$route['products/show/(:any)'] = 'products/show/$1';
 $route['products/(:any)'] = 'products/$1';
