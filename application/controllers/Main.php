@@ -55,8 +55,12 @@ class Main extends MX_Controller
                     else
                         $data['content'] = modules::run("products/products/".$action, $arg1);
                 break;
+            case 'messages':
+                $data['content'] = modules::run("messages/messages/".$action);
+                break;
         }
         $data['message'] = $this->session->flashdata('message');
+        $data['isloggedin'] = $this->session->userdata('isloggedin');
         $this->parser->parse('main', $data);
     }
 }

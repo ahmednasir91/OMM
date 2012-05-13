@@ -25,6 +25,7 @@
     <script type="text/javascript" src="/Assets/Images-CSS/jquery.js"></script>
     <script type="text/javascript" src="/Assets/Images-CSS/et_shortcodes_frontend.js"></script>
     <link rel="stylesheet" href="/Assets/Images-CSS/flexslider.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/Assets/Images-CSS/table-style.css" type="text/css" media="screen">
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 <body>
@@ -41,7 +42,8 @@
                 <ul id="menu-new-menu" class="nav sf-js-enabled"><li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14"><a href="/">Home</a></li>
                     <li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href="/products">Products</a></li>
                     <li id="menu-item-396" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-396"><a href="/products/addnew/">Sell Product</a></li>
-                    <li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/contact-us/">Contact Us</a></li>
+                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/addnew">Messages</a></li><? endif; ?>
+                    <li id="menu-item-409" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-409"><a href="/contact-us/">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -68,8 +70,8 @@
 <div id="main_content">
 
     <div id="breadcrumbs">
-        {message}
         {login}
+            <p style="color: red; text-align: center">{message}</p>
     </div> <!-- end #breadcrumbs -->
     {content}
 </div> <!-- end #main_content -->

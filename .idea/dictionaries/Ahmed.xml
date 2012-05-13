@@ -7,16 +7,19 @@
       <w>commentform</w>
       <w>commentlist</w>
       <w>datestring</w>
+      <w>doesn</w>
       <w>filedata</w>
       <w>forgotpassword</w>
       <w>getlist</w>
       <w>getlistby</w>
       <w>getmakes</w>
       <w>isloggedin</w>
+      <w>ismessage</w>
       <w>makeslist</w>
       <w>perpage</w>
       <w>pricelist</w>
       <w>productid</w>
+      <w>recipientid</w>
       <w>reviewform</w>
       <w>sellerid</w>
       <w>totalreviews</w>
