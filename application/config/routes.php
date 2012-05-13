@@ -42,6 +42,7 @@ $route['register'] = 'main/index/register';
 $route['products/show/(:any)'] = 'main/index/products/show/$1';
 $route['products'] = 'main/index/products';
 $route['products/(:any)'] = 'main/index/products/$1';
+$route['reviews/(:any)'] = 'reviews/$1';
 $route['default_controller'] = 'main/index/home';
 //$route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';

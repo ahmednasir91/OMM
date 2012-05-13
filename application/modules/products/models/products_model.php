@@ -27,6 +27,13 @@ class Products_model extends CI_Model
             $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price >= " . $lower ." order by products.id DESC");
         return $query->result_array();
     }
+
+    public function search($keyword)
+    {
+        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and (products.make LIKE \"%" .$keyword ."%\" or products.model_no LIKE \"%" .$keyword ."%\") order by products.id DESC");
+        return $query->result_array();
+    }
+
     public function getlistby_make($make)
     {
         $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.make = \"" . $make ."\" order by products.id DESC");

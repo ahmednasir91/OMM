@@ -60,7 +60,7 @@ class Auth extends MX_Controller {
 			{ //if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect($this->config->item('base_url'), 'refresh');
+				redirect("/products", 'refresh');
 			}
 			else
 			{ //if the login was un-successful
@@ -97,7 +97,7 @@ class Auth extends MX_Controller {
 		$logout = $this->ion_auth->logout();
         $this->session->set_userdata(array('isloggedin' => false));
 		//redirect them back to the page they came from
-        redirect($this->config->item('base_url'), 'refresh');
+        redirect("/products", 'refresh');
 	}
 
 	//change password
@@ -310,7 +310,7 @@ class Auth extends MX_Controller {
 		{ //check to see if we are creating the user
 			//redirect them back to the admin page
 			$this->session->set_flashdata('message', "You have successfully registered, you can now login.");
-			redirect("/", 'refresh');
+			redirect("/products", 'refresh');
 		}
 		else
 		{ //display the create user form

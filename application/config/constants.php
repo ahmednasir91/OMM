@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //Defined by ME :-D
-define('UPLOAD_PATH', './uploads/images/');
+define('UPLOAD_PATH', '/uploads/images/');
 define('THUMB_HEIGHT', 147);
 define('THUMB_WIDTH', 147);
 define('PRODUCT_HOMEPAGE', 10);

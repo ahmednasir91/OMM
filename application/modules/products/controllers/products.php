@@ -22,12 +22,30 @@ class Products extends MX_Controller
         $this->load->view('products/home');
     }
 
+    public function pre_search()
+    {
+        redirect('products/search/' . $this->input->post('keyword'));
+    }
+
+    public function search($keyword)
+    {
+        $products = $this->products_model->search($keyword);
+        $data['zerorows'] = empty($products);
+        $data['products'] = $products;
+        $this->load->view('products/index', $data);
+    }
+
     public function makeslist()
     {
         $makes = $this->products_model->getmakes();
         $data['makes'] = $makes;
         $this->load->view('products/makes', $data);
     }
+    public function pricelist()
+    {
+        $this->load->view('products/prices');
+    }
+
 
     public function make($make)
     {
@@ -48,7 +66,6 @@ class Products extends MX_Controller
 
     public function index()
     {
-
         $products = $this->products_model->getlist(PRODUCT_HOMEPAGE, FALSE);
         $data['zerorows'] = empty($products);
         $data['products'] = $products;
@@ -61,6 +78,8 @@ class Products extends MX_Controller
         $product = $this->products_model->getproduct_by_id($id);
         if(!empty($product))
         {
+            $product[0]->reviews = modules::run('reviews/index', $id);
+            $product[0]->reviewform = modules::run('reviews/addnew', $id);
             $this->load->view('products/show', $product[0]);
         }
         else
@@ -134,7 +153,7 @@ class Products extends MX_Controller
         else
         {
             $this->session->set_flashdata("message", "You must be logged in, to list a product for selling.");
-            redirect("/");
+            redirect("/products");
         }
     }
 }

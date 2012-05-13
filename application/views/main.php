@@ -47,10 +47,9 @@
 
 
             <div class="search-form">
-                <form method="get" class="searchform" action="/">
-
-                    <label for="searchinput">Search here</label>
-                    <input type="text" name="s" id="searchinput">
+                <?php echo form_open('products/pre_search');?>
+                <label for="searchinput">Search here</label>
+                    <input type="text" name="keyword" id="searchinput">
                     <input type="image" src="/Assets/Images-CSS/search_btn.png" id="searchsubmit">
                 </form>
             </div>
@@ -79,6 +78,7 @@
 </div> <!-- end #main_content -->
 <div id="sidebar">
     {makeslist}
+    {pricelist}
 </div> <!-- end #sidebar -->
 </div> <!-- end #content_area -->
     <? else: ?>

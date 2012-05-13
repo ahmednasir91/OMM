@@ -21,4 +21,7 @@
     Description:
     <p><? echo $description ?></p>
 </div>
-
+<section id="comment-wrap">
+    <? echo $reviews ?>
+    <? echo $reviewform ?>
+</section>

@@ -29,6 +29,7 @@ class Main extends MX_Controller
         $data['title'] = "Online Mobile Marketplace";
         $data['login'] = modules::run('auth/auth/index');
         $data['makeslist'] = modules::run('products/products/makeslist');
+        $data['pricelist'] = modules::run('products/products/pricelist');
         $data['nothome'] = true;
         switch($page)
         {

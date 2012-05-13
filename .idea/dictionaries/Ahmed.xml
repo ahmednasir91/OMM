@@ -3,13 +3,23 @@
     <words>
       <w>addnew</w>
       <w>basepath</w>
+      <w>clearfix</w>
+      <w>commentform</w>
+      <w>commentlist</w>
+      <w>datestring</w>
+      <w>filedata</w>
       <w>forgotpassword</w>
       <w>getlist</w>
       <w>getlistby</w>
       <w>getmakes</w>
       <w>isloggedin</w>
       <w>makeslist</w>
+      <w>pricelist</w>
+      <w>productid</w>
+      <w>reviewform</w>
       <w>sellerid</w>
+      <w>totalreviews</w>
+      <w>userid</w>
       <w>widgettitle</w>
       <w>zerorows</w>
     </words>
