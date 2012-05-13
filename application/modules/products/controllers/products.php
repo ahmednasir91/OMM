@@ -11,6 +11,7 @@ class Products extends MX_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('pagination');
         $this->load->model('products_model');
         $this->load->helper(array('form', 'url', 'html'));
         $this->load->library(array('session', 'upload', 'parser'));
@@ -27,10 +28,32 @@ class Products extends MX_Controller
         redirect('products/search/' . $this->input->post('keyword'));
     }
 
+    public function limit($array, $start, $limit)
+    {
+        $result = array();
+        for($i = 0, $j = $start; ($j < $start + $limit) && ($j < count($array)); $j++, $i++)
+            $result[$i] = $array[$j];
+        return $result;
+    }
+
     public function search($keyword)
     {
         $products = $this->products_model->search($keyword);
         $data['zerorows'] = empty($products);
+        if(!empty($products)){
+            $config['cur_tag_open'] = '<span class="current">';
+            $config['cur_tag_close'] = '</span>';
+            $config['num_tag_open'] = '<span class="page larger">';
+            $config['num_tag_close'] = '</span>';
+            $config['base_url'] = base_url() . "products/search/" . $keyword;
+            $config['total_rows'] = count($products);
+            $config['per_page'] = PRODUCT_PERPAGE;
+            $config['uri_segment'] = 4;
+            $this->pagination->initialize($config);
+            $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+            $products = $this->limit($products, $page, PRODUCT_PERPAGE);
+            $data['links'] = $this->pagination->create_links();
+        }
         $data['products'] = $products;
         $this->load->view('products/index', $data);
     }
@@ -51,7 +74,22 @@ class Products extends MX_Controller
     {
         $products = $this->products_model->getlistby_make($make);
         $data['zerorows'] = empty($products);
+        if(!empty($products)){
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['num_tag_open'] = '<span class="page larger">';
+        $config['num_tag_close'] = '</span>';
+        $config['base_url'] = base_url() . "products/make/" . $make;
+        $config['total_rows'] = count($products);
+        $config['per_page'] = PRODUCT_PERPAGE;
+        $config['uri_segment'] = 4;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $products = $this->limit($products, $page, PRODUCT_PERPAGE);
+            $data['links'] = $this->pagination->create_links();
+        }
         $data['products'] = $products;
+
         $this->load->view('products/index', $data);
     }
 
@@ -59,7 +97,22 @@ class Products extends MX_Controller
     {
         $products = $this->products_model->getlistby_price($lower, $upper);
         $data['zerorows'] = empty($products);
+        if(!empty($products)){
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['num_tag_open'] = '<span class="page larger">';
+        $config['num_tag_close'] = '</span>';
+        $config['base_url'] = base_url() . "products/price/" . $lower . "/" . $upper;
+        $config['total_rows'] = count($products);
+        $config['per_page'] = PRODUCT_PERPAGE;
+        $config['uri_segment'] = 5;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
+        $products = $this->limit($products, $page, PRODUCT_PERPAGE);
+            $data['links'] = $this->pagination->create_links();
+        }
         $data['products'] = $products;
+
         $this->load->view('products/index', $data);
     }
 
@@ -68,6 +121,20 @@ class Products extends MX_Controller
     {
         $products = $this->products_model->getlist(PRODUCT_HOMEPAGE, FALSE);
         $data['zerorows'] = empty($products);
+        if(!empty($products)){
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['num_tag_open'] = '<span class="page larger">';
+        $config['num_tag_close'] = '</span>';
+        $config['base_url'] = base_url() . "products/index";
+        $config['total_rows'] = count($products);
+        $config['per_page'] = PRODUCT_HOMEPAGE;
+        $config['uri_segment'] = 3;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $products = $this->limit($products, $page, PRODUCT_HOMEPAGE);
+        $data['links'] = $this->pagination->create_links();
+        }
         $data['products'] = $products;
         $this->load->view('products/index', $data);
 

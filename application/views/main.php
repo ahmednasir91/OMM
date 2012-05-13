@@ -72,9 +72,6 @@
         {login}
     </div> <!-- end #breadcrumbs -->
     {content}
-    <div class="wp-pagenavi">
-        <span class="pages">Page 1 of 2</span><span class="current">1</span><a href="/category/blog/page/2/" class="page larger">2</a>
-    </div>
 </div> <!-- end #main_content -->
 <div id="sidebar">
     {makeslist}

@@ -36,5 +36,7 @@
     </div>
 </article>
 <? endforeach; ?>
-
+<div class="wp-pagenavi">
+    <? if(isset($links)) echo $links; ?>
+</div>
 <? endif; ?>
