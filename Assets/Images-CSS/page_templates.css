@@ -55,6 +55,29 @@ textarea.input { width: 478px; height:130px; }
 #et_contact_submit { background: url(images/contact_submit.png) no-repeat; width: 73px; margin-right: 6px; }
 #et_contact_reset { background: url(images/contact_reset.png) no-repeat; width: 61px; }
 
+
+
+
+#form-1 p input, #form-1 p textarea { background: url(images/contact_input.png) repeat-x #f7f7f7 !important; border: 1px solid #cccccc !important; width: 100% !important; color: #111111 !important; padding: 8px !important; }
+#form-1 p textarea { width: 95% !important; }
+#form-1 p #form1_captcha { width: 20px !important; }
+
+#form-1 p .form1_error { border: 1px solid red !important; }
+
+#form-1 .et_hidden { display: none; }
+
+#form1_left, #form1_right { float: left; }
+#form1_left { width: 70%; }
+#form1_right { width: 17%; margin-left: 50px; }
+
+#form1_submit, #form1_reset { border: 0px !important; color: #4c4b4b !important; float: right; font-size: 12px; text-shadow: 1px 1px 1px #fff; text-transform: uppercase; margin-right: 9px; height: 35px; }
+
+#form1_submit { background: url(images/contact_submit.png) no-repeat; width: 73px; margin-right: 6px; }
+#form1_reset { background: url(images/contact_reset.png) no-repeat; width: 61px; }
+
+
+
+
 #et-search { background: url(images/et_search_bg.png) no-repeat; width: 574px; height: 172px; }
 	#et-search-inner { padding: 19px 14px 0px 29px; }
 		p#et-search-title { background: url(images/et_search_bottom.png) no-repeat bottom left; padding: 0px 0px 10px 10px; margin-left: -8px; margin-bottom: 13px; }

@@ -34,9 +34,9 @@
         </p>
         <p class="clearfix">
 
-            <? echo form_upload('image_url', set_value('image_url')); ?>
+            <input class="input" type="file" name="image_url" value="">
         </p>
-    </div> <!-- #et_contact_left -->
+    </div>
 
 
     <div class="clear"></div>
