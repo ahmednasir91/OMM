@@ -56,7 +56,7 @@ class Main extends MX_Controller
                         $data['content'] = modules::run("products/products/".$action, $arg1);
                 break;
             case 'messages':
-                $data['content'] = modules::run("messages/messages/".$action);
+                $data['content'] = modules::run("messages/messages/".$action, $arg1);
                 break;
         }
         $data['message'] = $this->session->flashdata('message');

@@ -42,7 +42,8 @@
                 <ul id="menu-new-menu" class="nav sf-js-enabled"><li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14"><a href="/">Home</a></li>
                     <li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href="/products">Products</a></li>
                     <li id="menu-item-396" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-396"><a href="/products/addnew/">Sell Product</a></li>
-                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/addnew">Messages</a></li><? endif; ?>
+                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/index">Inbox</a></li><? endif; ?>
+                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/addnew">Send New Message</a></li><? endif; ?>
                     <li id="menu-item-409" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-409"><a href="/contact-us/">Contact Us</a></li>
                 </ul>
             </nav>

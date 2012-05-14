@@ -9,10 +9,14 @@
 ?>
 <div id="respond">
     <h3 id="reply-title"><span>Compose New Message</span></h3>
-    <? if($this->session->userdata('isloggedin')): ?>
     <form action="/messages/create" method="post" id="commentform">
     <p>Required fields are marked <span class="required">*</span></p>
-    <p><label for="recipient">Recipient</label> <span class="required">*</span><input id="recipient" name="recipient" type="text" value="" size="30" aria-required='true' /></p>
+        <? if($recipientid !== 0): ?>
+        <input type='hidden' name='recipientid' value='<? echo $recipientid; ?>' id='recipientid' />
+        <input type='hidden' name='recipient' value='<? echo $recipient; ?>' id='recipient' />
+
+    <? else: echo '<p><label for="recipient">Recipient</label> <span class="required">*</span><input id="recipient" name="recipient" type="text" value="" size="30" aria-required="true" /></p>'; ?>
+        <? endif; ?>
     <p><label for="subject">Subject</label><span class="required">*</span><input id="subject" name="subject" type="text" value="" size="30" /></p>
         <p class="comment-form-comment">
             <label for="description">Message</label>
@@ -22,7 +26,4 @@
             <input type='hidden' name='senderid' value='<? echo $senderid; ?>' id='senderid' />
         </p>
         </form>
-    <? else: ?>
-         <p class="comment-notes">You must login in order to send a message.</p>
-    <? endif; ?>
 </div><!-- #respond -->

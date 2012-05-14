@@ -16,9 +16,26 @@ class Messages extends MX_Controller
         $this->load->library(array('session', 'upload', 'parser'));
     }
 
+    function show($id)
+    {
+        $message = $this->messages_model->getmessage($id);
+        $data['message'] = $message[0];
+        $this->load->view("messages/show", $data);
+    }
+
+    public function delete($id)
+    {
+        $this->messages_model->delete($id);
+        $this->session->set_flashdata("message", "Message has been deleted.");
+        redirect("/messages/index");
+    }
+
     function index()
     {
-        $this->load->view('messages/index');
+        $messages = $this->messages_model->get($this->session->userdata("userid"));
+        $data['messages'] = $messages;
+        $data['nomessage'] = empty($messages);
+        $this->load->view('messages/index', $data);
     }
     function check_username($username)
     {
@@ -31,8 +48,11 @@ class Messages extends MX_Controller
         return $get_result;
 
     }
-    public function addnew()
+    public function addnew($id = 0)
     {
+        $data['recipientid'] = $id;
+        if($id !== 0)
+            $data['recipient'] = $this->messages_model->get_username($id);
         $data["senderid"] = $this->session->userdata("userid");
         $this->load->view('messages/new', $data);
     }

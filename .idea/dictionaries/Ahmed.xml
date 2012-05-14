@@ -13,15 +13,20 @@
       <w>getlist</w>
       <w>getlistby</w>
       <w>getmakes</w>
+      <w>getmessage</w>
+      <w>inboxtable</w>
       <w>isloggedin</w>
       <w>ismessage</w>
+      <w>isread</w>
       <w>makeslist</w>
+      <w>nomessage</w>
       <w>perpage</w>
       <w>pricelist</w>
       <w>productid</w>
       <w>recipientid</w>
       <w>reviewform</w>
       <w>sellerid</w>
+      <w>senderid</w>
       <w>totalreviews</w>
       <w>userid</w>
       <w>widgettitle</w>
