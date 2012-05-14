@@ -22,13 +22,13 @@
     <div class = "entry_content">
         <div class = "postmeta">
             <p><? echo "Seller: " . $product['seller'] ?></p>
-            <p><? echo "Price: " . $product['price'] . "$" ?></p>
+            <p style="font-weight: bold"><? echo "Price: " . $product['price'] . "PKR" ?></p>
             <a href = "/products/show/<? echo $product['id']; ?>" class = "readmore" ><span>More Details</span></a>
         </div>
 
         <div class = "post-thumbnail">
             <a href = "/products/show/<? echo $product['id']; ?>" >
-            <image src = "<? echo $product['thumb_url']; ?>" hieght = "147px" width = "147px" />
+            <img  src = "<? echo $product['thumb_url']; ?>" hieght = "147px" width = "147px" />
             <span class="post-overlay"></span>
             </a>
         </div>

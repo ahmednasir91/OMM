@@ -12,8 +12,13 @@
 <html dir="ltr" lang="en-US" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
 
-    <title>{title}</title>
+    <title>OMM - Online Mobile Market Place</title>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold' rel='stylesheet' type='text/css'/>
+	<link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="/Assets/Images-CSS/style.css" type="text/css" media="screen">
+    <link rel='stylesheet' id='camera-css'  href='/Assets/SLIDER/css/camera.css' type='text/css' media='all'>
     <script type="text/javascript">
         document.documentElement.className = 'js';
     </script>
@@ -27,6 +32,22 @@
     <link rel="stylesheet" href="/Assets/Images-CSS/flexslider.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/Assets/Images-CSS/table-style.css" type="text/css" media="screen">
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+
+
+
+
+
+
+	
+	
+	
+    
+    
+	
+	
+	
+	
 </head>
 <body>
 <div id="page-wrap">
@@ -43,16 +64,16 @@
                     <li id="menu-item-12" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a href="/products">Products</a></li>
                     <li id="menu-item-396" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-396"><a href="/products/addnew/">Sell Product</a></li>
                     <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/index">Inbox</a></li><? endif; ?>
-                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/addnew">Send New Message</a></li><? endif; ?>
-                    <li id="menu-item-409" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-409"><a href="/contact-us/">Contact Us</a></li>
+                    <? if($isloggedin): ?><li id="menu-item-408" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-408"><a href="/messages/addnew">Send Message</a></li><? endif; ?>
+                    <li id="menu-item-409" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-409"><a href="/contact-us/">Contact</a></li>
                 </ul>
             </nav>
 
 
             <div class="search-form">
                 <?php echo form_open('products/pre_search');?>
-                <label for="searchinput">Search here</label>
-                    <input type="text" name="keyword" id="searchinput">
+                    <label for = "searchinput">Search Products</label>
+                    <input type="text" x-widget-text  name="keyword" id="searchinput">
                     <input type="image" src="/Assets/Images-CSS/search_btn.png" id="searchsubmit">
                 </form>
             </div>
@@ -88,32 +109,11 @@
 </div> <!-- end .container -->
 </div> <!-- end #main-area -->
 </div> <!-- end #page-wrap -->
-
 <footer id="main-footer">
     <div class="container clearfix">
         <div id="footer-top-shadow"></div>
 
-        <div id="footer-widgets" class="clearfix">
-            <!-- end . footer-widget --><div class="footer-widget footer-col2">
-            <div id="meta-3" class="f_widget widget_meta"><h4 class="widgettitle">Meta</h4>
-        <ul>
-            <li><a href="/wp-login.php">Log in</a></li>
-            <li><a href="/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-            <li><a href="/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-            <li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
-        </ul>
-        </div></div> <!-- end . footer-widget -->
-            <div class="footer-widget footer-col4 last">
-                <div id="text-3" class="f_widget widget_text">
-                    <h4 class="widgettitle">Custom Text Widget</h4>
-                    <div class="textwidget">Quisque ullamcorper enim vel tellus rhoncus et fermentum diam congue.
-                        Phasellus eu turpis lorem, id gravida nunc. In bibendum nulla vel quam pretium a fringilla erat ornare.
-                        Etiam hendrerit quam sed orci congue posuere laoreet urna condimentum. Nam vestibulum gravida
-                        semper</div>
-        </div></div> <!-- end . footer-widget -->
-        </div> <!-- end #footer-widgets -->
-
-        <p id="copyright">Designed by  <a href="#" title="">Ahmed</a> | Powered by  <a href="#">CodeIgniter</a></p>
+        <p id="copyright"> � 2012. All Rights Reserved | Developed by <a href="#">Ahmed</a> | Designed by  <a href="#" title="">Mohammad</a> | Tested by <a href="#">Fahad</a> |Powered by  <a href="#">CodeIgniter</a></p>
     </div> <!-- end .container -->
 </footer> <!-- end #main-footer -->
 
@@ -127,5 +127,22 @@
 <script type="text/javascript" src="/Assets/Images-CSS/jquery.easing-1.3.pack.js"></script>
 <script type="text/javascript" src="/Assets/Images-CSS/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="/Assets/Images-CSS/et-ptemplates-frontend.js"></script>
+<script type='text/javascript' src='/Assets/SLIDER/scripts/jquery.min.js'></script>
+<script type='text/javascript' src='/Assets/SLIDER/scripts/jquery.mobile.customized.min.js'></script>
+<script type='text/javascript' src='/Assets/SLIDER/scripts/jquery.easing.1.3.js'></script>
+<script type='text/javascript' src='/Assets/SLIDER/scripts/camera.min.js'></script>
 
+<script>
+    jQuery(function(){
+
+        jQuery('#camera_wrap_1').camera({
+            thumbnails: true,
+            transPeriod: 700,
+            time: 1000,
+            height: '37%'
+        });
+
+
+    });
+</script>
 </body></html>

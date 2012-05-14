@@ -1,4 +1,3 @@
-
 /**
  * jQuery.labelify - Display in-textbox hints
  * Stuart Langridge, http://www.kryogenix.org/

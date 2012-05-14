@@ -20,7 +20,9 @@ class Products extends MX_Controller
 
     public function home()
     {
-        $this->load->view('products/home');
+        $products = $this->products_model->getlist(PRODUCT_HOMEPAGE);
+        $data["products"] = $products;
+        $this->load->view('products/home', $data);
     }
 
     public function pre_search()
@@ -119,7 +121,7 @@ class Products extends MX_Controller
 
     public function index()
     {
-        $products = $this->products_model->getlist(PRODUCT_HOMEPAGE, FALSE);
+        $products = $this->products_model->getlist();
         $data['zerorows'] = empty($products);
         if(!empty($products)){
         $config['cur_tag_open'] = '<span class="current">';

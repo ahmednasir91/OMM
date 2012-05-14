@@ -1,1 +1,2 @@
-Welcome <? echo $username ?>, <a href = "/auth/logout" >Logout!</a>
+Welcome <? echo $username ?>,<a href = "/auth/logout" ><span style="color:  #a61e17;"> Logout!</span></a>
+    <p style="text-align: center; text-decoration: blink;"><? if($unreadmessages) echo '<a href ="/messages/index" ><span style="color: #a61e17;">You have unread messages!</span></a>' ?></p>

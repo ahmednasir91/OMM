@@ -9,6 +9,7 @@ class Auth extends MX_Controller {
 		$this->load->library('session');
 		$this->load->library('form_validation');
 		$this->load->database();
+        $this->load->model("messages/messages_model");
 		$this->load->helper('url');
 	}
 
@@ -32,8 +33,10 @@ class Auth extends MX_Controller {
 		{
 			//set the flash data error message if there is one
 			//list the users
+
 			$user = $this->ion_auth->user()->row();
-			$this->load->view('auth/index', array('username' => $user->username));
+            $unreadmessages = ($this->messages_model->unread($user->id) !== 0);
+			$this->load->view('auth/index', array('username' => $user->username, 'unreadmessages' => $unreadmessages));
             $this->session->set_userdata(array(
                 'isloggedin' => true,
                 'username' => $user->username,

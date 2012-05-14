@@ -55,60 +55,60 @@ jQuery(document).ready(function() {
 	
 	//contact page
 	var $et_contact_container = jQuery('#et-contact'),
-		$et_contact_form = $et_contact_container.find('form#contact_form'),
+		$et_contact_form = $et_contact_container.find('form#et_contact_form'),
 		$et_contact_submit = $et_contact_container.find('input#et_contact_submit'),
 		$et_inputs = $et_contact_form.find('input[type=text],textarea'),
-		et_email_reg = /^([-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+		et_email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
 		et_contact_error = false,
 		form_default_values = new Array(),
 		$et_contact_message = jQuery('#et-contact-message'),
 		et_message = '';
-
+		
 		form_default_values['et_contact_name'] = 'Name';
 		form_default_values['et_contact_email'] = 'Email Address';
 		form_default_values['et_contact_subject'] = 'Subject';
 		form_default_values['et_contact_message'] = 'Message';
-
+			
 	$et_inputs.live('focus', function(){
 		if ( jQuery(this).val() === form_default_values[jQuery(this).attr('id')] ) jQuery(this).val("");
 	}).live('blur', function(){
 		if (jQuery(this).val() === "") jQuery(this).val(form_default_values[jQuery(this).attr('id')]);
 	});
-
+	
 	$et_contact_form.live('submit', function() {
 		et_contact_error = false;
 		et_message = '<ul>';
-
+	
 		$et_inputs.removeClass('et_contact_error');
-
+		
 		$et_inputs.each(function(index, domEle){
 			if ( jQuery(domEle).val() === '' || jQuery(domEle).val() === form_default_values[jQuery(domEle).attr('id')] ) {
 				jQuery(domEle).addClass('et_contact_error');
 				et_contact_error = true;
-
+				
 				var default_value = form_default_values[jQuery(domEle).attr('id')];
 				if ( default_value === undefined ) default_value = 'Captcha';
-
+								
 				et_message += '<li>Fill ' + default_value + ' field</li>';
 			}
 			if ( (jQuery(domEle).attr('id') == 'et_contact_email') && !et_email_reg.test(jQuery(domEle).val()) ) {
 				jQuery(domEle).removeClass('et_contact_error').addClass('et_contact_error');
 				et_contact_error = true;
-
+				
 				if ( !et_email_reg.test(jQuery(domEle).val()) ) et_message += '<li>Invalid email</li>';
 			}
 		});
-
+		
 		if ( !et_contact_error ) {
 			$href = jQuery(this).attr('action');
-
+				
 			$et_contact_container.fadeTo('fast',0.2).load($href+' #et-contact', jQuery(this).serializeArray(), function() {
 				$et_contact_container.fadeTo('fast',1);
 			});
 		}
-
+		
 		et_message += '</ul>';
-
+		
 		if ( et_message != '<ul></ul>' )
 			$et_contact_message.html(et_message);
 		

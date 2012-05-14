@@ -40,10 +40,12 @@ class Products_model extends CI_Model
         return $query->result_array();
     }
 
-    public function getlist($limit, $full)
+    public function getlist($limit = 0)
     {
-
-        $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id order by products.id DESC");
+        if($limit === 0)
+            $query = $this->db->query("SELECT products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id order by products.id DESC");
+        else
+            $query = $this->db->query("SELECT products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id order by products.id DESC LIMIT " . $limit);
         return $query->result_array();
     }
 

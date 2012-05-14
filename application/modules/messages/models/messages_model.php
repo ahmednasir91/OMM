@@ -14,6 +14,12 @@ class Messages_model extends CI_Model
         $this->load->helper('date');
     }
 
+    public function unread($id)
+    {
+        $query = $this->db->query('SELECT id FROM messages where recipientid='.$id . " and isread = 0");
+        return $query->num_rows();
+    }
+
     public function check_username($username)
     {
         $username = strtolower($username);
