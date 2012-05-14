@@ -26,4 +26,4 @@
             <input type='hidden' name='senderid' value='<? echo $senderid; ?>' id='senderid' />
         </p>
         </form>
-</div><!-- #respond -->
+</div>

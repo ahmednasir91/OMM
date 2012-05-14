@@ -58,6 +58,9 @@ class Main extends MX_Controller
             case 'messages':
                 $data['content'] = modules::run("messages/messages/".$action, $arg1);
                 break;
+            case "contact-us":
+                $data['content'] = modules::run("pages/pages/view", $page);
+                break;
         }
         $data['message'] = $this->session->flashdata('message');
         $data['isloggedin'] = $this->session->userdata('isloggedin');

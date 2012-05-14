@@ -7,33 +7,44 @@
  * To change this template use File | Settings | File Templates.
  */
 ?>
-<h2>List New Product</h2>
-<?= validation_errors(); ?>
-<?= form_open_multipart('products/create') ?>
-<?= form_hidden('seller_id', $seller_id)?>
-<table>
-    <tr>
-        <td><label for = "make">Make</label></td>
-        <td><input type = "input" name = "make" value = "<?= set_value('make'); ?>" /><br /></td>
-    </tr>
-    <tr>
-        <td><label for = "model_no">Model Number</label></td>
-        <td><input type = "input" name = "model_no" value = "<?= set_value('model_no'); ?>"/><br /></td>
-    </tr>
-    <tr>
-        <td><label for = 'image_url'>Image</label></td>
-        <td><? echo form_upload('image_url', set_value('image_url')); ?></td>
-    </tr>
-    <tr>
-        <td><label for = "description">Description</label></td>
-        <td><textarea rows="5" cols="20" name = "description" value = "<?= set_value('description'); ?>"></textarea></td>
-    </tr>
-    <tr>
-        <td><label for = "price">Price</label></td>
-        <td><input type = "input" name = "price" value = "<?= set_value('price'); ?>"/></td>
-    </tr>
-    <tr>
-        <td colspan="2"><?= form_submit('submit', 'Submit'); ?></td>
-    </tr>
-</form>
-</table>
+<article class="entry post clearfix">
+    <h1 class="main_title">List New Product</h1>
+</article>
+
+
+<div id="form-1" class="responsive">
+
+    <div id="et-contact-message"> </div>
+    <?= validation_errors(); ?>
+
+    <?= form_open_multipart('/products/create') ?>
+    <?= form_hidden('seller_id', $seller_id)?>
+    <div id="et_contact_left">
+        <p class="clearfix">
+            <label for = "make">Make</label>
+            <input type="text" name="make" value = "<?= set_value('make'); ?>" id="make" class="input">
+        </p>
+        <p class="clearfix">
+            <label for = "model_no">Model Number</label>
+            <input type="text" name="model_no" value = "<?= set_value('model_no'); ?>" id="model_no" class="input">
+        </p>
+        <p class="clearfix">
+            <label for = "price">Price(PKR)</label>
+            <input type="text" name="price" value = "<?= set_value('price'); ?>" id="price" class="input">
+        </p>
+        <p class="clearfix">
+
+            <? echo form_upload('image_url', set_value('image_url')); ?>
+        </p>
+    </div> <!-- #et_contact_left -->
+
+
+    <div class="clear"></div>
+
+    <p class="clearfix">
+        <label for = "description">Description</label>
+        <textarea class="input" id="description" name="description"  value = "<?= set_value('description'); ?>">Description</textarea>
+    </p>
+    <input class="form1_submit" type="submit" value="Submit" id="form1_submit">
+    </form>
+</div>

@@ -164,8 +164,9 @@ class Products extends MX_Controller
         $this->form_validation->set_rules('image_url', 'Image', 'callback__do_upload');
         if($this->form_validation->run($this) === FALSE)
         {
+            $data["seller_id"] = $this->session->userdata("userid");
             $this->session->set_flashdata("message", validation_errors());
-            $this->load->view('products/new');
+            $this->load->view('products/new', $data);
         }
         else
         {

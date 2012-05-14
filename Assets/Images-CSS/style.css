@@ -197,7 +197,7 @@ img#about-image { float: left; margin: 3px 8px 8px 0px; }
 	body.page h1.main_title { padding-bottom: 20px; }
 	
 	#et_pt_blog { margin-right: 50px; }
-	#et-contact, #et-login, #sitemap { padding-top: 20px; }
+	#form-1, #et-login, #sitemap { padding-top: 20px; }
 	#et-search { margin-top: 20px; }
 	
 	body.home #content_area { border-top: 1px solid #F1F1F1; }
@@ -602,3 +602,22 @@ a.readmore:hover, #sidebar div.custom-sidebar-block ul.control li a:hover, ul#ca
 		.single-thumbnail { margin-left: 36px; }
 }
 .et_embedded_videos { display: none !important; }
+
+
+
+#form-1 p input, #form-1 p textarea { background: url(images/contact_input.png) repeat-x #f7f7f7 !important; border: 1px solid #cccccc !important; width: 100% !important; color: #111111 !important; padding: 8px !important; }
+#form-1 p textarea { width: 95% !important; }
+#form-1 p #form1_captcha { width: 20px !important; }
+
+#form-1 p .form1_error { border: 1px solid red !important; }
+
+#form-1 .et_hidden { display: none; }
+
+#form1_left, #form1_right { float: left; }
+#form1_left { width: 70%; }
+#form1_right { width: 17%; margin-left: 50px; }
+
+#form1_submit, #form1_reset { border: 0px !important; color: #4c4b4b !important; float: right; font-size: 12px; text-shadow: 1px 1px 1px #fff; text-transform: uppercase; margin-right: 9px; height: 35px; }
+
+#form1_submit { background: url(images/contact_submit.png) no-repeat; width: 73px; margin-right: 6px; }
+#form1_reset { background: url(images/contact_reset.png) no-repeat; width: 61px; }
