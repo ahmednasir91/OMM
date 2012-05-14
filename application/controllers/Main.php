@@ -61,7 +61,13 @@ class Main extends MX_Controller
             case "contact-us":
                 $data['content'] = modules::run("pages/pages/view", $page);
                 break;
+            case "pages":
+                $data["content"] = modules::run("pages/pages/contact");
         }
+        $data["recentreviews"] = modules::run("reviews/reviews/recentreviews");
+        $data["newusers"] = modules::run("auth/auth/newusers");
+        $data["randomproducts"] = modules::run("products/products/randomproducts");
+        $data["recentproducts"] = modules::run("products/products/recentproducts");
         $data['message'] = $this->session->flashdata('message');
         $data['isloggedin'] = $this->session->userdata('isloggedin');
         $this->parser->parse('main', $data);

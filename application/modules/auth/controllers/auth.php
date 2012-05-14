@@ -12,7 +12,12 @@ class Auth extends MX_Controller {
         $this->load->model("messages/messages_model");
 		$this->load->helper('url');
 	}
-
+    public function newusers()
+    {
+        $users = $this->ion_auth_model->getrecent(RECENTITEMS);
+        $data["users"] = $users;
+        $this->load->view("auth/newusers", $data);
+    }
 	//redirect if needed, otherwise display the user list
 	function index()
 	{

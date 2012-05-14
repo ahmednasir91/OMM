@@ -54,4 +54,11 @@ class Reviews extends MX_Controller
             redirect('products/show/' . $post['productid']);
         }
     }
+
+    public function recentreviews()
+    {
+        $reviews = $this->reviews_model->getrecent(RECENTITEMS);
+        $data["reviews"] = $reviews;
+        $this->load->view("reviews/recentreviews", $data);
+    }
 }

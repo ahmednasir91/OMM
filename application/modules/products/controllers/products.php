@@ -18,6 +18,21 @@ class Products extends MX_Controller
 
     }
 
+    public function recentproducts()
+    {
+        $products = $this->products_model->getrecent(RECENTITEMS);
+        $data["products"] = $products;
+        $data["title"] = "Recent ";
+        $this->load->view("products/recentproducts", $data);
+    }
+
+    public function randomproducts()
+    {
+        $products = $this->products_model->getrandom(RECENTITEMS);
+        $data["products"] = $products;
+        $data["title"] = "Random ";
+        $this->load->view("products/recentproducts", $data);
+    }
 
     public function buy()
     {

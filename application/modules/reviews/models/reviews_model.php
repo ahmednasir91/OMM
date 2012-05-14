@@ -35,4 +35,10 @@ class Reviews_model extends CI_Model
         }
         return $result;
     }
+
+    public function getrecent($limit)
+    {
+        $query = $this->db->query("SELECT users.first_name as first_name, users.last_name as last_name, products.id as productid, products.make as make, products.model_no as model_no from reviews, users, products where reviews.userid = users.id and reviews.productid = products.id order by reviews.id DESC limit " . $limit);
+        return $query->result();
+    }
 }

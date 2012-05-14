@@ -172,7 +172,11 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('model_constructor');
 	}
-
+    public function getrecent($limit)
+    {
+        $query = $this->db->query("SELECT first_name, last_name from users order by id DESC limit " . $limit);
+        return $query->result();
+    }
 	/**
 	 * Misc functions
 	 *

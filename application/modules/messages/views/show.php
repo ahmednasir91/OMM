@@ -3,7 +3,7 @@
     <li class="comment even thread-even depth-1">
         <div class="comment-body clearfix">
             <div class="avatar-box">
-                <img alt='' src='/Assets/Images-CSS/images/avatar.jpg' class='avatar' height='62' width='62' />
+                
                 <span class="avatar-overlay"></span>
             </div> <!-- end .avatar-box -->
             <div class="comment-wrap clearfix">

@@ -20,12 +20,17 @@
       <w>ismessage</w>
       <w>isread</w>
       <w>makeslist</w>
+      <w>newusers</w>
       <w>nomessage</w>
       <w>perpage</w>
       <w>pricelist</w>
       <w>productdetails</w>
       <w>productid</w>
       <w>productname</w>
+      <w>randomproducts</w>
+      <w>recentitems</w>
+      <w>recentproducts</w>
+      <w>recentreviews</w>
       <w>recipientid</w>
       <w>reviewform</w>
       <w>sellerid</w>

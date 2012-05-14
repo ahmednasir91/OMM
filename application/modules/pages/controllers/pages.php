@@ -8,6 +8,10 @@
  */
 class Pages extends MX_Controller
 {
+    public function __construct()
+    {
+        $this->load->library('email');
+    }
     public function view($page)
 	{
 		$this->load->view("pages/".$page);
@@ -15,6 +19,7 @@ class Pages extends MX_Controller
 
     public function contact()
     {
-
+        $this->session->set_flashdata("message", "Your message has been sent into the air.");
+        redirect("/products/index");
     }
 }

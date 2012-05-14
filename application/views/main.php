@@ -33,21 +33,6 @@
     <link rel="stylesheet" href="/Assets/Images-CSS/table-style.css" type="text/css" media="screen">
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 
-
-
-
-
-
-
-	
-	
-	
-    
-    
-	
-	
-	
-	
 </head>
 <body>
 <div id="page-wrap">
@@ -73,7 +58,7 @@
             <div class="search-form">
                 <?php echo form_open('products/pre_search');?>
                     <label for = "searchinput">Search Products</label>
-                    <input type="text" x-widget-text  name="keyword" id="searchinput">
+                    <input type="text" x-webkit-speech  name="keyword" id="searchinput">
                     <input type="image" src="/Assets/Images-CSS/search_btn.png" id="searchsubmit">
                 </form>
             </div>
@@ -109,17 +94,21 @@
 </div> <!-- end .container -->
 </div> <!-- end #main-area -->
 </div> <!-- end #page-wrap -->
+
+
 <footer id="main-footer">
     <div class="container clearfix">
         <div id="footer-top-shadow"></div>
 
-        <p id="copyright"> � 2012. All Rights Reserved | Developed by <a href="#">Ahmed</a> | Designed by  <a href="#" title="">Mohammad</a> | Tested by <a href="#">Fahad</a> |Powered by  <a href="#">CodeIgniter</a></p>
+        <div id="footer-widgets" class="clearfix">
+{recentreviews}
+{newusers}
+{recentproducts}
+{randomproducts}
+            </div>
+        <p id="copyright"> © 2012. All Rights Reserved | Developed by <a href="#">Ahmed</a> | Designed by  <a href="#" title="">Mohammad</a> | Tested by <a href="#">Fahad</a> |Powered by  <a href="#">CodeIgniter</a></p>
     </div> <!-- end .container -->
 </footer> <!-- end #main-footer -->
-
-
-
-
 <script type="text/javascript" src="/Assets/Images-CSS/superfish.js"></script>
 <script type="text/javascript" src="/Assets/Images-CSS/jquery.flexslider-min.js"></script>
 <script type="text/javascript" src="/Assets/Images-CSS/jquery.fitvids.js"></script>
@@ -131,7 +120,6 @@
 <script type='text/javascript' src='/Assets/SLIDER/scripts/jquery.mobile.customized.min.js'></script>
 <script type='text/javascript' src='/Assets/SLIDER/scripts/jquery.easing.1.3.js'></script>
 <script type='text/javascript' src='/Assets/SLIDER/scripts/camera.min.js'></script>
-
 <script>
     jQuery(function(){
 
@@ -141,8 +129,6 @@
             time: 1000,
             height: '37%'
         });
-
-
     });
 </script>
 </body></html>

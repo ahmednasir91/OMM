@@ -22,9 +22,9 @@ class Products_model extends CI_Model
     public function getlistby_price($lower, $upper)
     {
         if($upper !== 0)
-            $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price <= " . $upper ." and products.price >= " . $lower ." and sold = 0 order by products.id DESC");
+            $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price <= " . $upper ." and products.price >= " . $lower ." and sold = 0 order by products.id DESC");
         else
-            $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price >= " . $lower ." and sold = 0 order by products.id DESC");
+            $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.price >= " . $lower ." and sold = 0 order by products.id DESC");
         return $query->result_array();
     }
     public function productname($productid)
@@ -43,20 +43,32 @@ class Products_model extends CI_Model
 
     public function search($keyword)
     {
-        $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and (products.make LIKE \"%" .$keyword ."%\" or products.model_no LIKE \"%" .$keyword ."%\") order by products.id DESC");
+        $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and (products.make LIKE \"%" .$keyword ."%\" or products.model_no LIKE \"%" .$keyword ."%\") order by products.id DESC");
         return $query->result_array();
     }
 
     public function getlistby_make($make)
     {
-        $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.make = \"" . $make ."\" and sold = 0  order by products.id DESC");
+        $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.make = \"" . $make ."\" and sold = 0  order by products.id DESC");
         return $query->result_array();
+    }
+
+    public function getrecent($limit)
+    {
+        $query = $this->db->query("SELECT id, model_no, make from products where sold = 0 order by id DESC limit " . $limit);
+        return $query->result();
+    }
+
+    public function getrandom($limit)
+    {
+        $query = $this->db->query("SELECT id, model_no, make from products where sold = 0 order by RAND() limit " . $limit);
+        return $query->result();
     }
 
     public function getlist($limit = 0)
     {
         if($limit === 0)
-            $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id  and sold = 0  order by products.id DESC");
+            $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id  and sold = 0  order by products.id DESC");
         else
             $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id  and sold = 0  order by products.id DESC LIMIT " . $limit);
         return $query->result_array();
@@ -64,7 +76,7 @@ class Products_model extends CI_Model
 
     public function getproduct_by_id($id)
     {
-        $query = $this->db->query("SELECT products.sold as sold, products.id, username as seller, make, model_no, price, image_url, description from users, products where products.seller_id = users.id and products.id = " . $id);
+        $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, image_url, description from users, products where products.seller_id = users.id and products.id = " . $id);
         return $query->result();
     }
 

@@ -7,6 +7,7 @@ define('PRODUCT_HOMEPAGE', 3);
 define('PRODUCT_PERPAGE', 8);
 define('IMAGE_HEIGHT', 200);
 define('IMAGE_WIDTH', 200);
+define('RECENTITEMS', 6);
 
 /*
 |--------------------------------------------------------------------------
