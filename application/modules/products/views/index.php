@@ -22,6 +22,7 @@
     <div class = "entry_content">
         <div class = "postmeta">
             <p><? echo "Seller: " . $product['seller'] ?></p>
+            <? if($product["sold"] !== "0") echo '<p style="color: red;"><b>Sold!</b></p>' ?>
             <p style="font-weight: bold"><? echo "Price: " . $product['price'] . "PKR" ?></p>
             <a href = "/products/show/<? echo $product['id']; ?>" class = "readmore" ><span>More Details</span></a>
         </div>

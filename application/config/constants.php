@@ -3,8 +3,8 @@
 define('UPLOAD_PATH', './uploads/images/');
 define('THUMB_HEIGHT', 147);
 define('THUMB_WIDTH', 147);
-define('PRODUCT_HOMEPAGE', 6);
-define('PRODUCT_PERPAGE', 6);
+define('PRODUCT_HOMEPAGE', 3);
+define('PRODUCT_PERPAGE', 10);
 define('IMAGE_HEIGHT', 200);
 define('IMAGE_WIDTH', 200);
 

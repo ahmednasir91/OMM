@@ -18,6 +18,24 @@ class Products extends MX_Controller
 
     }
 
+
+    public function buy()
+    {
+        $this->load->model("auth/ion_auth_model");
+        $this->load->model("messages/messages_model");
+        $seller = $this->input->post("seller");
+        $sellerid = $this->ion_auth_model->userid($seller);
+        $buyerid = $this->input->post("buyerid");
+        $productid = $this->input->post("productid");
+        $productname = $this->products_model->productname($productid);
+        $buyer = $this->ion_auth_model->username($buyerid);
+        $description = "Greetings, ".$buyer. " has bought your product \"" . $productname . "\". You can reply to this message and ask him for more details.";
+        $subject = "Your product has been sold.";
+        $this->messages_model->save(array("recipientid" => $sellerid, "senderid" => $buyerid, "subject" => $subject, "description" => $description));
+        $this->products_model->productsold($productid);
+        $this->load->view("products/buydone");
+    }
+
     public function home()
     {
         $products = $this->products_model->getlist(PRODUCT_HOMEPAGE);
@@ -130,11 +148,11 @@ class Products extends MX_Controller
         $config['num_tag_close'] = '</span>';
         $config['base_url'] = base_url() . "products/index";
         $config['total_rows'] = count($products);
-        $config['per_page'] = PRODUCT_HOMEPAGE;
+        $config['per_page'] = PRODUCT_PERPAGE;
         $config['uri_segment'] = 3;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $products = $this->limit($products, $page, PRODUCT_HOMEPAGE);
+        $products = $this->limit($products, $page, PRODUCT_PERPAGE);
         $data['links'] = $this->pagination->create_links();
         }
         $data['products'] = $products;

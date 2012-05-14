@@ -3,6 +3,7 @@
     <words>
       <w>addnew</w>
       <w>basepath</w>
+      <w>buyerid</w>
       <w>clearfix</w>
       <w>commentform</w>
       <w>commentlist</w>
@@ -22,7 +23,9 @@
       <w>nomessage</w>
       <w>perpage</w>
       <w>pricelist</w>
+      <w>productdetails</w>
       <w>productid</w>
+      <w>productname</w>
       <w>recipientid</w>
       <w>reviewform</w>
       <w>sellerid</w>

@@ -63,7 +63,7 @@
 
 					<div id="recent-posts">
 
-<h3>Recent Blog Posts</h3>
+<h3>Recently Listed Products</h3>
 <? foreach($products as $product): ?>
 <div class="r-post clearfix">
 <div class="thumb">

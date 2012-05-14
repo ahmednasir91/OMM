@@ -1,0 +1,1 @@
+<? echo "Your request has been sent to the Seller, he will get back to you shortly." ?>

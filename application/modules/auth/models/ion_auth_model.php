@@ -555,6 +555,20 @@ class Ion_auth_model extends CI_Model
 		return FALSE;
 	}
 
+    public function userid($username)
+    {
+        $query = $this->db->query("Select id from users where username = \"" . $username."\"");
+        $result = $query->result();
+        return $result[0]->id;
+    }
+
+    public function username($userid)
+    {
+        $query = $this->db->query("Select username from users where id = " . $userid);
+        $result = $query->result();
+        return $result[0]->username;
+    }
+
 	/**
 	 * register
 	 *
