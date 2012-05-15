@@ -1,6 +1,7 @@
 <div id="simpleform">
 <h3 id = "reply-title">Retrieve Password</h3>
 <?php echo form_open("forgot_password", array('id' => "registration"));?>
+    <p><?php echo validation_errors(); ?></p>
     <p class = "comment-notes">Please enter your email address so we can send you an email to reset your password.</p>
     <p>
         <label for = "email">Email Address</label>

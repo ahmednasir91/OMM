@@ -37,49 +37,63 @@ class Messages extends MX_Controller
         $data['nomessage'] = empty($messages);
         $this->load->view('messages/index', $data);
     }
-    function check_username($username)
+    function recipient_exists($recipient)
     {
-        $get_result = $this->messages_model->check_username($username);
-        if(!$get_result )
+        $this->load->model("auth/ion_auth_model");
+        if($this->ion_auth_model->check_username($recipient))
         {
-            $this->session->set_flashdata("message", 'The recipient doesn\'t exists.');
-            return false;
+
+            return TRUE;
         }
-        return $get_result;
+        else
+        {
+            $this->form_validation->set_message('recipient_exists', 'The recipient doesnot exists in database.');
+            return FALSE;
+        }
 
     }
     public function addnew($id = 0)
     {
+        $this->load->model("auth/ion_auth_model");
         $data['recipientid'] = $id;
         if($id !== 0)
-            $data['recipient'] = $this->messages_model->get_username($id);
+            $data['recipient'] = $this->ion_auth_model->username($id);
         $data["senderid"] = $this->session->userdata("userid");
         $this->load->view('messages/new', $data);
     }
     public function create()
     {
-        $recipient = $this->input->post("recipient");
-        $recipient = $this->check_username($recipient);
-        if(!$recipient)
-            redirect("messages/addnew");
-        $message['recipientid'] = $recipient->id;
-        $message['senderid'] = $this->input->post('senderid');
-        if($message['recipientid'] == $message['senderid'])
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('recipient', 'Recipient', 'isnot[Recipient]|callback_recipient_exists');
+        $this->form_validation->set_rules('subject', 'Subject', 'isnot[Subject]|min_length[2]|max_length[30]');
+        $this->form_validation->set_rules('description', 'Message', 'isnot[Message]|min_length[3]|max_length[1000]');
+        if($this->form_validation->run($this) == FALSE)
         {
-            $this->session->set_flashdata("message", 'You cannot send message to yourself!');
-            redirect("/messages/addnew");
-        }
-        $message['description'] = $this->input->post('description');
-        $message['subject'] = $this->input->post('subject');
-        if($this->messages_model->save($message))
-        {
-            $this->session->set_flashdata("message", 'Message has been sent!');
-            redirect("/products");
+            $this->load->view("messages/new", array("recipientid" => 0, "senderid" => $this->session->userdata("userid")));
         }
         else
         {
-            $this->session->set_flashdata("message", 'Error sending message!');
-            $this->load->view('messages/addnew');
+            $recipient = $this->input->post("recipient");
+            $message['recipientid'] = $this->ion_auth_model->userid($recipient);
+            $message['senderid'] = $this->input->post('senderid');
+            if($message['recipientid'] == $message['senderid'])
+            {
+                $this->session->set_flashdata("message", 'You cannot send message to yourself!');
+                redirect("/messages/addnew");
+            }
+            $message['description'] = $this->input->post('description');
+            $message['subject'] = $this->input->post('subject');
+            if($this->messages_model->save($message))
+            {
+                $this->session->set_flashdata("message", 'Message has been sent!');
+                redirect("/products");
+            }
+            else
+            {
+                $this->session->set_flashdata("message", 'Error sending message!');
+                $this->load->view('messages/addnew');
+            }
         }
     }
 }

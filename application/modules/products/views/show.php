@@ -19,8 +19,15 @@
     <tr> <td><img style="margin:-4px 5px 0 0; display:inline;" src="/Assets/Images-CSS/images/seller.png" align="left"/> <font class="productdetails"> Seller:</font></td><td><? echo $seller ?></td></tr>
 
     <tr><td colspan="2">
-        <? if($this->session->userdata("isloggedin") && $sold === "0" && $this->session->userdata("username") !== $seller):
-        echo '<a  style="margin-left:-7px;" class="buynow" href="#">Buy Now</a>' ?>
+        <? if($this->session->userdata("isloggedin") && $sold === "0" && $this->session->userdata("username") !== $seller):  ?>
+        <form action="/products/buy" method="post">
+            <p>
+                <input name="submit" type="submit" class = "buynow" id="submit" value="Buy Now!">
+                <input type="hidden" name="seller" value="<? echo $seller ?>" id="seller">
+                <input type="hidden" name="productid" id="productid" value="<? echo $id ?>">
+                <input type="hidden" name="buyerid" id="buyerid" value="<? echo $this->session->userdata('userid') ?>">
+            </p>
+        </form>
         <? elseif($sold !== "0"): echo '<a style="margin-left:-7px;" class="soldout" href="#">Sold out</a>' ?>
         <? endif; ?>
     </td></tr>

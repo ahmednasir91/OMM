@@ -19,7 +19,20 @@ class Pages extends MX_Controller
 
     public function contact()
     {
-        $this->session->set_flashdata("message", "Your message has been sent into the air.");
-        redirect("/products/index");
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Name', 'isnot[Name]|required|min_length[3]|max_length[25]|alpha');
+        $this->form_validation->set_rules('subject', 'Subject', 'isnot[Subject]|required|min_length[3]|max_length[40]');
+        $this->form_validation->set_rules('description', 'Decription', 'isnot[Description]|required|min_length[5]|max_length[1000]');
+        $this->form_validation->set_rules('email', 'Email', 'isnot[Email]|valid_email|xss_clean');
+        if($this->form_validation->run($this) === FALSE)
+        {
+            $this->load->view("pages/contact-us");
+        }
+        else
+        {
+            $this->session->set_flashdata("message", "Your message has been sent into the air.");
+            redirect("/products/index");
+        }
     }
 }

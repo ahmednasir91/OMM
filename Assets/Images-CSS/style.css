@@ -146,8 +146,8 @@ img#about-image { float: left; margin: 3px 8px 8px 0px; }
 				a.readmore:hover { color:#00B7F3!important;  background:url(images/readmore.png) no-repeat right bottom; text-decoration:none; }
 				a.readmore:hover span { background:url(images/readmore.png) no-repeat; display:block; height:30px; padding-left: 16px; padding-right:5px; }
 				
-				a.buynow { font-size:0px;  background:url(images/buynow.png); background-position: 0px 0px; float:left; display:block; width:182px; height:42px;}
-				a.buynow:hover { background:url(images/buynow.png); background-position:0px -48px;  width:182px; height:42px;}
+				input.buynow { font-size:0px;  background:url(images/buynow.png); background-position: 0px 0px; float:left; display:block; width:182px; height:42px;}
+				input.buynow:hover { background:url(images/buynow.png); background-position:0px -48px;  width:182px; height:42px;}
 				a.soldout { font-size:0px;  background:url(images/buynow.png); background-position: 0px -96px; float:left; display:block; width:182px; height:42px;}
 				
 			#recent-posts { float:left; width:455px; }
@@ -167,7 +167,7 @@ img#about-image { float: left; margin: 3px 8px 8px 0px; }
 			#breadcrumbs a, #breadcrumbs span { color: #a6a6a6; }
 			#breadcrumbs a:hover { color: #111; text-decoration: none; }
 			
-.entry { padding: 50px 20px 45px 15px; border-bottom: 1px solid #f1f1f1; width: 43%; float:left; overflow:hidden;}
+.entry { padding: 50px 20px 45px 15px; border-bottom: 1px solid #f1f1f1; width:43%; float:left; overflow:hidden;}
 	.post h1.title { font-size: 28px; font-family: Georgia, serif; font-style: italic; letter-spacing: 0; padding-bottom: 23px; }
 		.post h1.title a { color: #2b2b2b; }
 		.post h1.title a:hover { color: #111; text-decoration: none; }

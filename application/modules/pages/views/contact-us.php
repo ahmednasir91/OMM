@@ -14,7 +14,7 @@
 
 <div id="form-1" class="responsive">
 
-    <div id="et-contact-message"> </div>
+    <div id="et-contact-message"> <? echo validation_errors() ?></div>
     <?= form_open('/pages/contact') ?>
     <div id="et_contact_left">
         <p class="clearfix">

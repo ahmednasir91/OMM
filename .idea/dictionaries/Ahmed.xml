@@ -4,10 +4,12 @@
       <w>addnew</w>
       <w>basepath</w>
       <w>buyerid</w>
+      <w>checkusername</w>
       <w>clearfix</w>
       <w>commentform</w>
       <w>commentlist</w>
       <w>datestring</w>
+      <w>decription</w>
       <w>doesn</w>
       <w>filedata</w>
       <w>forgotpassword</w>
@@ -18,7 +20,9 @@
       <w>inboxtable</w>
       <w>isloggedin</w>
       <w>ismessage</w>
+      <w>isnot</w>
       <w>isread</w>
+      <w>jpeg</w>
       <w>makeslist</w>
       <w>newusers</w>
       <w>nomessage</w>
@@ -37,6 +41,7 @@
       <w>sellerid</w>
       <w>senderid</w>
       <w>totalreviews</w>
+      <w>unreadmessages</w>
       <w>userid</w>
       <w>widgettitle</w>
       <w>zerorows</w>

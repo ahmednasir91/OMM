@@ -43,12 +43,14 @@ class Products_model extends CI_Model
 
     public function search($keyword)
     {
+        $keyword = str_replace("%20", " ", $keyword);
         $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and (products.make LIKE \"%" .$keyword ."%\" or products.model_no LIKE \"%" .$keyword ."%\") order by products.id DESC");
         return $query->result_array();
     }
 
     public function getlistby_make($make)
     {
+        $make = str_replace("%20", " ", $make);
         $query = $this->db->query("SELECT products.sold as sold, products.id, products.description as description, username as seller, make, model_no, price, thumb_url from users, products where products.seller_id = users.id and products.make = \"" . $make ."\" and sold = 0  order by products.id DESC");
         return $query->result_array();
     }

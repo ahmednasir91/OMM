@@ -20,22 +20,22 @@ class Messages_model extends CI_Model
         return $query->num_rows();
     }
 
-    public function check_username($username)
-    {
-        $username = strtolower($username);
-        $query = $this->db->query('SELECT id FROM users where username="'.$username.'"');
-        if($query->num_rows() > 0)
-            return $query->row();
-        else
-            return false;
-    }
-
-    public function get_username($id)
-    {
-        $query = $this->db->query('SELECT username from users where id = ' . $id);
-        $result = $query->result();
-        return $result[0]->username;
-    }
+//    public function check_username($username)
+//    {
+//        $username = strtolower($username);
+//        $query = $this->db->query('SELECT id FROM users where username="'.$username.'"');
+//        if($query->num_rows() > 0)
+//            return $query->row();
+//        else
+//            return false;
+//    }
+//
+//    public function get_username($id)
+//    {
+//        $query = $this->db->query('SELECT username from users where id = ' . $id);
+//        $result = $query->result();
+//        return $result[0]->username;
+//    }
 
     public function save($message)
     {

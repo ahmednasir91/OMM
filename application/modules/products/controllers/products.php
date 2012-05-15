@@ -60,7 +60,7 @@ class Products extends MX_Controller
 
     public function pre_search()
     {
-        redirect('products/search/' . $this->input->post('keyword'));
+        redirect('/products/search/' . $this->input->post('keyword'));
     }
 
     public function limit($array, $start, $limit)
@@ -73,6 +73,17 @@ class Products extends MX_Controller
 
     public function search($keyword)
     {
+        if(!isset($keyword) || $keyword === "Search%20Products")
+        {
+            $this->session->set_flashdata("message", "You should enter a keyword for search...");
+            redirect("/products");
+        }
+        elseif(strlen($keyword) > 20)
+        {
+            $this->session->set_flashdata("message", "Search keyword must be less than 20 characters...");
+            redirect("/products");
+        }
+        else{
         $products = $this->products_model->search($keyword);
         $data['zerorows'] = empty($products);
         if(!empty($products)){
@@ -91,6 +102,7 @@ class Products extends MX_Controller
         }
         $data['products'] = $products;
         $this->load->view('products/index', $data);
+        }
     }
 
     public function makeslist()
@@ -192,15 +204,14 @@ class Products extends MX_Controller
     {
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('make', 'Make', 'required');
-        $this->form_validation->set_rules('model_no', 'Model Number', 'required');
-        $this->form_validation->set_rules('description', 'Description', 'required');
-        $this->form_validation->set_rules('price', 'Price', 'required');
+        $this->form_validation->set_rules('make', 'Make', 'isnot[Make]|required|min_length[3]|max_length[12]');
+        $this->form_validation->set_rules('model_no', 'Model Number', 'isnot[Model Number]|required|min_length[3]|max_length[12]');
+        $this->form_validation->set_rules('description', 'Description', 'isnot[Description]|required|min_length[10]|max_length[1200]');
+        $this->form_validation->set_rules('price', 'Price', 'isnot[Price(PKR)]|required|numeric|min_length[3]|max_length[8]');
         $this->form_validation->set_rules('image_url', 'Image', 'callback__do_upload');
         if($this->form_validation->run($this) === FALSE)
         {
             $data["seller_id"] = $this->session->userdata("userid");
-            $this->session->set_flashdata("message", validation_errors());
             $this->load->view('products/new', $data);
         }
         else

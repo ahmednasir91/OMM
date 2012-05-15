@@ -14,4 +14,9 @@ class MY_Form_validation extends CI_Form_validation{
         return parent::run($group);
     }
 
+    function isnot($str,$field){
+        $this->CI->form_validation->set_message('isnot', "The %s field is required. It cannot be left empty.");
+        return $str!==$field;
+    }
+
 }

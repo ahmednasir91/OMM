@@ -15,7 +15,7 @@
 <div id="form-1" class="responsive">
 
     <div id="et-contact-message"> </div>
-    <?= validation_errors(); ?>
+    <? echo validation_errors() ?>
 
     <?= form_open_multipart('/products/create') ?>
     <?= form_hidden('seller_id', $seller_id)?>

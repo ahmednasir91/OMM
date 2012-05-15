@@ -53,11 +53,9 @@ class Auth extends MX_Controller {
 	//log the user in
 	function login()
 	{
-		$data['title'] = "Login";
-
 		//validate form input
-		$this->form_validation->set_rules('identity', 'Identity', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('identity', 'Username', 'required|isnot[Username]|min_length[3]|max_length[12]');
+		$this->form_validation->set_rules('password', 'Password', 'required|isnot[Password]');
 
 		if ($this->form_validation->run() == true)
 		{ //check to see if the user is logging in
@@ -74,33 +72,19 @@ class Auth extends MX_Controller {
 			{ //if the login was un-successful
 				//redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect($this->session->userdata('previous_page')); //use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect("/products"); //use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
-		{  //the user is not logging in so display the login page
-			//set the flash data error message if there is one
-			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-			$data['identity'] = array('name' => 'identity',
-				'id' => 'identity',
-				'type' => 'text',
-				'value' => $this->form_validation->set_value('identity'),
-			);
-			$data['password'] = array('name' => 'password',
-				'id' => 'password',
-				'type' => 'password',
-			);
-
-			$this->load->view('auth/login', $data);
+		{
+            $this->session->set_flashdata('message', validation_errors());
+			redirect("/products");
 		}
 	}
 
 	//log the user out
 	function logout()
 	{
-		$data['title'] = "Logout";
-
 		//log the user out
 		$logout = $this->ion_auth->logout();
         $this->session->set_userdata(array('isloggedin' => false));
@@ -174,30 +158,20 @@ class Auth extends MX_Controller {
 	//forgot password
 	function forgot_password()
 	{
-		$this->form_validation->set_rules('email', 'Email Address', 'required');
+		$this->form_validation->set_rules('email', 'Email Address', 'isnot[Email Address]|required|valid_email');
 		if ($this->form_validation->run() == false)
 		{
 			//setup the input
 			$data['email'] = array('name' => 'email',
 				'id' => 'email',
 			);
-			$this->load->view('forgot_password', $data);
+			$this->load->view('auth/forgot_password', $data);
 		}
 		else
 		{
-			//run the forgotten password method to email an activation code to the user
-			$forgotten = $this->ion_auth->forgotten_password($this->input->post('email'));
+			$this->session->set_flashdata('message', "You password has been sent into the air.");
+			redirect("/products", 'refresh');
 
-			if ($forgotten)
-			{ //if there were no errors
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("/", 'refresh'); //we should display a confirmation page here instead of the login page
-			}
-			else
-			{
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("forgot_password", 'refresh');
-			}
 		}
 	}
 
@@ -291,16 +265,17 @@ class Auth extends MX_Controller {
 		{
 			redirect('auth', 'refresh');
 		}
+        $this->form_validation->set_message('is_unique', 'This %s already exists in database.');
 
 		//validate form input
-		$this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
-        $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
-		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
-		$this->form_validation->set_rules('phone_number', 'Phone Number', 'required|xss_clean');
-		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('first_name', 'First Name', 'isnot[First Name]|required|min_length[3]|max_length[12]');
+        $this->form_validation->set_rules('user_name', 'User Name', 'is_unique[users.username]|isnot[Username]|required|min_length[5]|max_length[12]');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'isnot[Last Name]|required|min_length[3]|max_length[12]');
+		$this->form_validation->set_rules('email', 'Email Address', 'is_unique[users.email]|isnot[Email]|required|valid_email');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'isnot[Phone Number]|required|xss_clean|numeric|min_length[3]|max_length[20]');
+		$this->form_validation->set_rules('address', 'Address', 'isnot[Address]|required');
+		$this->form_validation->set_rules('password', 'Password', 'isnot[Password]|required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'isnot[Password Confirm]|required');
 
 		if ($this->form_validation->run() == true)
 		{
@@ -323,8 +298,6 @@ class Auth extends MX_Controller {
 		else
 		{ //display the create user form
 			//set the flash data error message if there is one
-			$data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
 			$data['first_name'] = array('name' => 'first_name',
 				'id' => 'first_name',
 				'type' => 'text',
@@ -365,7 +338,7 @@ class Auth extends MX_Controller {
 				'type' => 'password',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
-			$this->load->view('register', $data);
+			$this->load->view('auth/register', $data);
 		}
 	}
 

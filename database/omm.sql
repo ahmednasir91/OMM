@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 14, 2012 at 06:48 PM
+-- Generation Time: May 15, 2012 at 07:15 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `senderid` (`senderid`),
   KEY `recipientid` (`recipientid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `messages`
@@ -68,7 +68,9 @@ INSERT INTO `messages` (`id`, `senderid`, `recipientid`, `subject`, `description
 (7, 2, 5, 'mymessage', 'asas', '2012-05-14 05:54:05', 1),
 (9, 2, 4, 'ahmed', 'ahmed', '2012-05-14 06:27:15', 1),
 (15, 6, 6, 'Your product has been sold.', 'Greetings, zain has bought your product "Nokia Lumia 900". You can reply to this message and ask him for more details.', '2012-05-14 13:07:04', 1),
-(16, 2, 6, 'Your product has been sold.', 'Greetings, ahmednasir has bought your product "Apple iPhone 4S". You can reply to this message and ask him for more details.', '2012-05-14 13:59:55', 1);
+(16, 2, 6, 'Your product has been sold.', 'Greetings, ahmednasir has bought your product "Apple iPhone 4S". You can reply to this message and ask him for more details.', '2012-05-14 13:59:55', 1),
+(18, 2, 1, 'Your product has been sold.', 'Greetings, ahmednasir has bought your product "Motorola RAZR2 V8 Luxury Edition". You can reply to this message and ask him for more details.', '2012-05-15 19:03:27', 0),
+(20, 6, 2, 'This is a reply..', 'asasdsad', '2012-05-15 19:07:34', 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `sold` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `products`
@@ -129,7 +131,7 @@ INSERT INTO `products` (`id`, `make`, `model_no`, `description`, `price`, `selle
 (26, 'HTC', 'One V', 'The first thing you pick up in the morning & the last thing you put away at night is HTC One V, You work on HTC One V, you connect to the digital world & you interact with those that matter most on it, You reach for HTC One V every time you want to remember a moment & you easily share that moment with just a couple taps, This isn’t just another smartphone; it stays with you & keeps up with you, HTC One V the essential smartphone for those on the go.  \r\n', '28500', 1, './uploads/images/htconevb.gif', '/uploads/images/htconevb_thumb.gif', 0),
 (27, 'Qmobile', 'Noir A2', 'Yes it is Speed & some what it is Revolution because Qmobile Noir A2 runs on Gingerbread, With 650Mhz Processor Qmobile noir A2 is as speedy as you can ever get, Touch is everything now a days so Qmobile Noir A2 comes with Capacitive Touch Pad, Google Android Market, Facebook, Twitter, Youtube with all these apps Qmobile Noir A2 is all you need.  \r\n', '9500', 1, './uploads/images/QNoirA2b.gif', '/uploads/images/QNoirA2b_thumb.gif', 0),
 (28, 'Sony Ericsson', 'W205', 'With its easy-to-use music player & on-board FM tuner SonyEricsson W205 is a decent budget music phone, SonyEricsson W205 is the cheapest phone in SonyEricsson''s current line-up of Walkman handsets, Most budget handsets have a candybar design but SonyEricsson W205 went with the adventurous slider approach, The Sony Ericsson W205 Walkman has quite obviously been built to a tight budget & as such it''s not the type of phone you''re going to flash around down the boozer.  \r\n', '6500', 1, './uploads/images/sew205b.gif', '/uploads/images/sew205b_thumb.gif', 0),
-(29, 'Motorola', 'RAZR2 V8 Luxury Edition', 'This special edition of the RAZR2 has gone “lux” with 18k gold plated accents standing out against a luminous, black slate, vacuum metal finish. Decadent details, such as elegant pin stripes on the CLI lens, an engraved diamond-cut pattern on the sideband and a linear etching on the navigation wheel add to the edgy, yet chic, finishes of the device. With a soft-touch back, embossed with a snakeskin effect, the device even feels luxurious in the hand.  \r\n', '37200', 1, './uploads/images/V8Luxb.gif', '/uploads/images/V8Luxb_thumb.gif', 0),
+(29, 'Motorola', 'RAZR2 V8 Luxury Edition', 'This special edition of the RAZR2 has gone “lux” with 18k gold plated accents standing out against a luminous, black slate, vacuum metal finish. Decadent details, such as elegant pin stripes on the CLI lens, an engraved diamond-cut pattern on the sideband and a linear etching on the navigation wheel add to the edgy, yet chic, finishes of the device. With a soft-touch back, embossed with a snakeskin effect, the device even feels luxurious in the hand.  \r\n', '37200', 1, './uploads/images/V8Luxb.gif', '/uploads/images/V8Luxb_thumb.gif', 1),
 (30, 'Samsung', 'Galaxy S II I9100', 'Making the impossible possible, Yes Samsung Galaxy S II is indeed the best smart phone, Samsung Dual Core Application Processor feature of Samsung Galaxy S II is the ultra responsive answer to mobile performance, providing high-speed multitasking and high performance gaming, Express your colour! This brilliant display of Samsung Galaxy S II delivers the best colouminimise, high contrast ratio as well as ultimate sharpness of image, Get vocal Just double tap the home key and you can control the Samsung Galaxy S II with a few selected words, With all these awesome features Samsung Galaxy S II is the cell phone you reallywant to put your money on.  \r\n', '48000', 1, './uploads/images/samsunggalaxysiib.gif', '/uploads/images/samsunggalaxysiib_thumb.gif', 0),
 (31, 'Samsung', 'Galaxy Note', 'Meet the new Samsung Galaxy Note - a new type of smartphone. The world''s first 5.3" HD Super AMOLED display, Samsung Galaxy Note provides you with an expansive high-resolution screen for an immersive viewing experience. Samsung Galaxy Note provides the ability to freely capture & create ideas anywhere & everywhere. The S Pen of Samsung Galaxy Note is combined with the full touch screen to create a best-in-class mobile input experience. With Advanced 8MP powerful camera of Samsung Galaxy Note, you capture the world’s every moment in deep detail. powered by lightning fast network speed (HSPA or 4G LTE) & 1.4GHz dual core processor, Samsung Galaxy Note is a mean machine.  \r\n', '59500', 1, './uploads/images/GalaxyNoteb.gif', '/uploads/images/GalaxyNoteb_thumb.gif', 0),
 (32, 'Samsung', 'Galaxy Ace S5830', 'Yes you will become an ace by using Samsung Galaxy Ace S5830, The Samsung Galaxy Ace S5830 takes a minimal approach in its design, resulting in a sophisticated mobile that will allure, With Samsung Galaxy Ace S5830 you can enjoy countless games, utilities, news, health and finance applications with more being added each day, Equipped with a strong 800MHz processor and Wi-Fi you can surf the web on Samsung Galaxy Ace S5830 like never before, The scope of what Samsung Galaxy Ace S5830 can do is virtually unlimited!  \r\n', '23900', 1, './uploads/images/Samsung_Galaxy_Aceb.gif', '/uploads/images/Samsung_Galaxy_Aceb_thumb.gif', 0),
@@ -140,7 +142,9 @@ INSERT INTO `products` (`id`, `make`, `model_no`, `description`, `price`, `selle
 (37, 'HTC', 'Radar', 'The HTC Radar is the intuitive phone that keeps it all on your radar and lets you get real-time close with everything, Crafted from a single piece of polished metal HTC Radar just feels great in your hands and is built to last, The HTC Radar is that friend who will always be there for you It’ll make the right impression on you and everyone around you, The intuitive HTC Radar has amazing entertainment features that ensure your journeys will fly by.  \r\n', '35000', 1, './uploads/images/htcradarb.gif', '/uploads/images/htcradarb_thumb.gif', 0),
 (38, 'HTC', 'ChaCha', 'You can take a photo - straight to Facebook. Make a video - straight to Facebook. Show whatever, whenever, at the touch of a button on your HTC ChaCha, Start a live instant chat & juggle between as many private conversations as you want the conversation never ends with HTC ChaCha, Heaps of friends, heaps of things you want to say HTC ChaCha comes with a QWERTY keyboard so you can knock out your messages fast, With the HTC ChaCha touchscreen zooming in and out of pictures, emails & web pages is made simple with a pinch of the screen.  \r\n', '21000', 1, './uploads/images/htcchachab.gif', '/uploads/images/htcchachab_thumb.gif', 0),
 (39, 'Nokia', 'E71', 'Today work is where we are. Now meet the Nokia E71 designed for the way we work. With optimised messaging & email , high speed connections, & navigation. Nokia E71 has two home screens to choose between work & leisure modes, application shortcuts to suit your schedule. Making the most of your day at work and away, Nokia E71 is mobile efficiency, beautifully styled.  \r\n', '20900', 1, './uploads/images/E71b.gif', '/uploads/images/E71b_thumb.gif', 0),
-(40, 'Nokia', 'C5 03', 'Nokia C5-03 is a slim touch screen phone with easy-to-use messaging features, Nokia C5-03 comes with free lifetime navigation with integrated A-GPS & Wi-Fi for fast internet browsing. With your Nokia C5-03 stay connected to the people who matter – access your favourite contacts with one touch, directly from the home screen of your Nokia C5-03. Enjoy entertainment on the move with C5-03 – stream videos, try new games & browse the web with a fast Wi-Fi connection.  \r\n', '15300', 1, './uploads/images/C5-03b.gif', '/uploads/images/C5-03b_thumb.gif', 0);
+(40, 'Nokia', 'C5 03', 'Nokia C5-03 is a slim touch screen phone with easy-to-use messaging features, Nokia C5-03 comes with free lifetime navigation with integrated A-GPS & Wi-Fi for fast internet browsing. With your Nokia C5-03 stay connected to the people who matter – access your favourite contacts with one touch, directly from the home screen of your Nokia C5-03. Enjoy entertainment on the move with C5-03 – stream videos, try new games & browse the web with a fast Wi-Fi connection.  \r\n', '15300', 1, './uploads/images/C5-03b.gif', '/uploads/images/C5-03b_thumb.gif', 0),
+(41, 'BlackBerry', 'Bold 9790', 'Typing is as easy as QWERTY, BlackBerry Bold 9790 features everything BlackBerry is known for, The BlackBerry Bold 9790 is powered by a different processor and HD video is one of the first things scrapped, BlackBerry Bold 9790 has what''s probably the best BlackBerry still camera to date, BlackBerry Bold 9790 is part of the premium Bold line but comes across as more mindful of budget than your average high-end BlackBerry.  \r\n', '41900', 2, './uploads/images/bbbold9790b1.gif', '/uploads/images/bbbold9790b1_thumb.gif', 0),
+(42, 'Nokia ', 'Oro', 'Make a lasting impression with the limited edition Nokia Oro smartphone. Bringing together 18-carat gold plating, the finest hand-wrapped leather and a sapphire crystal home key, this exclusive Nokia Oro touch-screen phone is the epitome of style and elegance. Nokia Oro also boasts an AMOLED glass display for viewing HD videos and full web pages. Enjoy superior sound quality with unique, award-winning wireless headset of Nokia Oro. Ultra sleek and compact, the Nokia J Bluetooth headset is crafted from premium materials with 18-carat gold plating and brushed stainless steel just like Nokia Oro  \r\n', '90000', 2, './uploads/images/Orob.gif', '/uploads/images/Orob_thumb.gif', 0);
 
 -- --------------------------------------------------------
 
@@ -157,14 +161,15 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   PRIMARY KEY (`id`),
   KEY `productid` (`productid`),
   KEY `userid` (`userid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `date`, `productid`, `userid`, `description`) VALUES
-(12, '2012-05-14 14:58:31', 21, 6, 'asas');
+(12, '2012-05-14 14:58:31', 21, 6, 'asas'),
+(13, '2012-05-15 19:04:30', 29, 2, 'This is a review..');
 
 -- --------------------------------------------------------
 
@@ -190,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `address` varchar(100) DEFAULT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `users`
@@ -198,10 +203,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `address`, `phone_number`) VALUES
 (1, 2130706433, 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, 1268889823, 1337013098, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(2, 2130706433, 'ahmednasir', '24865b73f3595c5a9bf5fb228d2e73812997bb45', NULL, 'ahmednasir91@gmail.com', NULL, NULL, NULL, 1336848172, 1337008791, 1, 'Ahmed', 'Nasir', '0', '+92213312007578'),
+(2, 2130706433, 'ahmednasir', '24865b73f3595c5a9bf5fb228d2e73812997bb45', NULL, 'ahmednasir91@gmail.com', NULL, NULL, NULL, 1336848172, 1337108874, 1, 'Ahmed', 'Nasir', '0', '+92213312007578'),
 (4, 2130706433, 'mustafa', 'cdf1a8f8212ab8b8196b724a60e0035ec98c3b78', NULL, 'musta@ga.com', NULL, NULL, NULL, 1336906081, 1336976852, 1, 'mustafa', 'zai', 'naz', '0922'),
 (5, 2130706433, 'fahad', 'ce10b7c82618562b7a408ac1c813ec71f8226f5d', NULL, 'daha@h.com', NULL, NULL, NULL, 1336912696, 1336975163, 1, 'fahad', 'uddin', 'nazimbad', '+92'),
-(6, 2130706433, 'zain', 'c5eff51af65052dd87342148a38e0994f79ba091', NULL, 'zain@zain.com', NULL, NULL, NULL, 1336989817, 1337009607, 1, 'Zain', 'Nasir', 'Nazimabad', '922111');
+(6, 2130706433, 'zain', 'c5eff51af65052dd87342148a38e0994f79ba091', NULL, 'zain@zain.com', NULL, NULL, NULL, 1336989817, 1337108748, 1, 'Zain', 'Nasir', 'Nazimabad', '922111'),
+(7, 2130706433, 'ahsan', '24a3ec674f6e17d464ffdf0cf100779c4cb57a23', NULL, 'ahmednasir91@gmail.com', NULL, NULL, NULL, 1337093970, 1337094234, 1, 'Ahsan', 'Nasir', '4E 1/14 Nazimabad', '92111222'),
+(8, 2130706433, 'aflatoon', 'b327e710175f4c550d372438fbf0c37433e56e9a', NULL, 'ahmed@ahmed.com', NULL, NULL, NULL, 1337101367, 1337101375, 1, 'Aflatoon', 'Alll', 'asjaijij', '13555');
 
 -- --------------------------------------------------------
 
@@ -214,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   `user_id` mediumint(8) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `users_groups`
@@ -227,7 +234,9 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (4, 3, 2),
 (5, 4, 2),
 (6, 5, 2),
-(7, 6, 2);
+(7, 6, 2),
+(8, 7, 2),
+(9, 8, 2);
 
 --
 -- Constraints for dumped tables
